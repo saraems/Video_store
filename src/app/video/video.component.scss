@@ -1,0 +1,59 @@
+.video_mini {
+  display: block;
+  height: 280px;
+  width: 420px;
+}
+
+.mat-app-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-card {
+  width: 100%;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-top: 0;
+  }
+}
+
+mat-card-content {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    height: 30px;
+    width: 20%;
+    text-align: center;
+  }
+}
+
+mat-card-actions {
+  width: 500px;
+  height: 300px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+ button,
+.example-button-row a {
+  margin-right: 8px;
+}

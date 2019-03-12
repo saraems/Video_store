@@ -1,14 +1,21 @@
 
-<div>
-  <h1>What video would you like add to your store? </h1>
-  <p>*copy full link of your favourite video or its ID</p>
-  <input type="text" [(ngModel)]="videoId">
-  <button (click)="findVideo()">Add</button>
-</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <h1>What video would you like add to your store? </h1>
+    <p>*copy full link or ID of your favourite video</p>
+  </mat-card-header>
+
+  <mat-card-content>
+    <input type="text" placeholder="paste video id or link here" [(ngModel)]='videoId'>
+    <button mat-fab color="primary" (click)="findVideo(videoId)">+</button>
+  </mat-card-content>
+  <mat-card-actions>
+    <img *ngIf="video" class="video_mini" src={{imagePath}} alt="oblate">
+    <h2 *ngIf="video"> {{ video.items[0].snippet.title }} </h2>
+    <p *ngIf="video"> {{ video.items[0].statistics.viewCount }} views</p>
+    <p *ngIf="video"> {{ video.items[0].statistics.likeCount }} likes</p>
+  </mat-card-actions>
+</mat-card>
 
 
-<!--<div> {{ video.items[0].snippet.title }} </div>-->
-<!--&lt;!&ndash;<image src={{video.items[0].snippet.thumbnails.medium.url}}></image>&ndash;&gt;-->
-<!--<div>{{ video.items[0].snippet.thumbnails.medium.url }}</div>-->
-<!--<div> {{ video.items[0].statistics.viewCount }} </div>-->
-<!--<div> {{ video.items[0].statistics.likeCount }} </div>-->
+

@@ -1,7 +1,7 @@
-.video_mini {
+.video {
   display: block;
-  height: 280px;
-  width: 420px;
+  width: 580px;
+  height: 360px;
 }
 
 .mat-app-background {
@@ -11,7 +11,13 @@
 }
 
 mat-card {
-  width: 100%;
+  margin-top: 7%;
+  padding: 3%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 mat-card-header {
@@ -22,6 +28,7 @@ mat-card-header {
 
   h1 {
     margin-bottom: 10px;
+    text-align: center;
   }
 
   p {
@@ -30,30 +37,68 @@ mat-card-header {
 }
 
 mat-card-content {
+  width: 100%;
   margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   input {
-    height: 30px;
-    width: 20%;
+    height: 50px;
+    width: 50%;
     text-align: center;
+    border-radius: 0;
+    outline: none;
+    border: 1px solid black;
   }
+
+  button {
+    margin: 0 10px 0 15px;
+    height: 50px;
+  }
+
 }
 
 mat-card-actions {
-  width: 500px;
-  height: 300px;
-  border: 1px solid black;
+  width: 580px;
+  height: 400px;
+  margin-top: 2%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  color: white;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: black;
+  position: relative;
+  border: 1px solid lightgray;
+  box-shadow: 8px 10px 20px 0 rgba(46,61,73,.15);
+
 }
 
 
- button,
-.example-button-row a {
-  margin-right: 8px;
+
+.video_meta {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+
+  .views {
+    margin-right: 10px;
+  }
+
 }
+
+.video_title {
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 45px;
+  left: 15px;
+}
+
+.add_video {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+}
+
+

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
+import { demoList } from '../demoVideosList';
 
 
 @Component({
@@ -12,6 +13,9 @@ export class VideoComponent implements OnInit {
   videoId: string;
   fullUrl: string;
   imagePath: string;
+  userLibrary: object[];
+  demo: boolean;
+  demoList: object[] = demoList;
 
 
   constructor(private dataService: DataService) {}
@@ -36,8 +40,33 @@ export class VideoComponent implements OnInit {
           this.videoId = '';
         });
   }
+  getTodaysDate() {
+    const today = new Date();
+    const dd = today.getDate();
+    const mm = today.getMonth() + 1;
+    const yyyy = today.getFullYear();
+    return mm + '/' + dd + '/' + yyyy;
+  }
+  addToMyLibrary(): void {
+    const videoLibraryTemplate = {
+      filmId: 1,
+      externalFilmId: this.video.items[0].id,
+      title: this.video.items[0].snippet.title,
+      views: this.video.items[0].statistics.viewCount,
+      likes: this.video.items[0].statistics.likeCount,
+      imgUrl: this.video.items[0].snippet.thumbnails.high.url,
+      favourite: false,
+      addingDate: this.getTodaysDate()
+    };
+    this.userLibrary.push(videoLibraryTemplate);
+    console.log(this.userLibrary);
+  }
+  showDemo() {
+    this.demo = true;
+  }
+
     ngOnInit() {
     this.videoId = '';
+    this.userLibrary = [];
   }
 }
-

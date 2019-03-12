@@ -1,5 +1,6 @@
 
 <mat-card class="example-card">
+
   <mat-card-header>
     <h1>What video would you like add to your store? </h1>
     <p>*copy full link or ID of your favourite video</p>
@@ -7,14 +8,44 @@
 
   <mat-card-content>
     <input type="text" placeholder="paste video id or link here" [(ngModel)]='videoId'>
-    <button mat-fab color="primary" (click)="findVideo(videoId)">+</button>
+    <button mat-raised-button color="primary" (click)="findVideo(videoId)">Search</button>
   </mat-card-content>
-  <mat-card-actions>
-    <img *ngIf="video" class="video_mini" src={{imagePath}} alt="oblate">
-    <h2 *ngIf="video"> {{ video.items[0].snippet.title }} </h2>
-    <p *ngIf="video"> {{ video.items[0].statistics.viewCount }} views</p>
-    <p *ngIf="video"> {{ video.items[0].statistics.likeCount }} likes</p>
+
+  <mat-card-actions *ngIf="video">
+      <img class="video" src={{imagePath}} alt="video">
+
+    <div class="video_meta">
+      <span class="views"> {{ video.items[0].statistics.viewCount }} views</span>
+      <span class="likes"> {{ video.items[0].statistics.likeCount }} likes</span>
+    </div>
+
+    <span class="video_title"> {{ video.items[0].snippet.title }} </span>
+    <button mat-fab color="primary" class="add_video" (click)="addToMyLibrary()">+</button>
   </mat-card-actions>
+
+  <button mat-raised-button color="primary" (click)="showDemo()">load demo video store</button>
+
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+      <button mat-icon-button disabled></button>
+      {{node.item}}
+    </mat-tree-node>
+    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+      <button mat-icon-button
+              [attr.aria-label]="'toggle ' + node.filname" matTreeNodeToggle>
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+      {{node.item}}
+      <mat-progress-bar *ngIf="node.isLoading"
+                        mode="indeterminate"
+                        class="example-tree-progress-bar"></mat-progress-bar>
+    </mat-tree-node>
+  </mat-tree>
+
+
+
 </mat-card>
 
 

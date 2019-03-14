@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
 import { demoList } from '../demoVideosList';
+import {youtubeResponse} from "../YoutubeResponse";
+import { DialogOverviewExample } from '../dialog-overview.service';
 
 
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss']
+  styleUrls: ['./video.component.scss'],
 })
 export class VideoComponent implements OnInit {
   video: any;
@@ -16,9 +18,11 @@ export class VideoComponent implements OnInit {
   userLibrary: object[];
   demo: boolean;
   demoList: object[] = demoList;
+  private error: any;
+  icons: boolean;
+  list: boolean;
 
-
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private dialog: DialogOverviewExample) {}
   createUrl(videoId: string) {
     const apiUrl = `https://www.googleapis.com/youtube/v3/`;
     const userKey = `&key=AIzaSyBcMNQVkmuIp8vI5QXDXQWef_AhV_zP5Yk`;
@@ -32,15 +36,19 @@ export class VideoComponent implements OnInit {
   }
 
   async findVideo(videoId: string) {
-    await this.createUrl(videoId);
-    return this.dataService.getVideo(this.fullUrl)
-        .subscribe((data) => {
+    if (videoId) {
+      await this.createUrl(videoId);
+      return this.dataService.getVideo(this.fullUrl)
+        .subscribe((data: youtubeResponse) => {
           this.video = data;
           this.imagePath = this.video.items[0].snippet.thumbnails.high.url;
           this.videoId = '';
-        });
+        },
+          error => this.error = error
+        );
+    }
   }
-  getTodaysDate() {
+  static getTodayDate() {
     const today = new Date();
     const dd = today.getDate();
     const mm = today.getMonth() + 1;
@@ -56,17 +64,30 @@ export class VideoComponent implements OnInit {
       likes: this.video.items[0].statistics.likeCount,
       imgUrl: this.video.items[0].snippet.thumbnails.high.url,
       favourite: false,
-      addingDate: this.getTodaysDate()
+      addingDate: VideoComponent.getTodayDate()
     };
     this.userLibrary.push(videoLibraryTemplate);
     console.log(this.userLibrary);
   }
-  showDemo() {
-    this.demo = true;
+  showDemo():void {
+    this.demo = !this.demo;
+    console.log(this.demo, this.icons, this.list);
+  }
+  // favourite(e) {
+  //   e.target.classList.toggle('favourite')
+  // }
+  showList():void {
+    this.icons = false;
+    console.log('Lists', this.list);
+  }
+  showIcons():void {
+    this.icons = true;
+    console.log('ICONS', this.icons);
   }
 
     ngOnInit() {
     this.videoId = '';
     this.userLibrary = [];
+    this.icons = true;
   }
 }

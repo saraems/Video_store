@@ -1,17 +1,17 @@
 
-<mat-card class="example-card">
+<div class="main_panel">
 
-  <mat-card-header>
+  <div class="main_panel__header">
     <h1>What video would you like add to your store? </h1>
     <p>*copy full link or ID of your favourite video</p>
-  </mat-card-header>
+  </div>
 
-  <mat-card-content>
+  <div class="main_panel__subheader">
     <input type="text" placeholder="paste video id or link here" [(ngModel)]='videoId'>
     <button mat-raised-button color="primary" (click)="findVideo(videoId)">Search</button>
-  </mat-card-content>
+  </div>
 
-  <mat-card-actions *ngIf="video">
+  <div class="main_panel__video_output" *ngIf="video">
       <img class="video" src={{imagePath}} alt="video">
 
     <div class="video_meta">
@@ -21,32 +21,53 @@
 
     <span class="video_title"> {{ video.items[0].snippet.title }} </span>
     <button mat-fab color="primary" class="add_video" (click)="addToMyLibrary()">+</button>
-  </mat-card-actions>
+  </div>
+  <!--<ng-template #wrongInput><p>Wrong input. Please try insert ID or video url one more time.</p></ng-template>-->
 
-  <button mat-raised-button color="primary" (click)="showDemo()">load demo video store</button>
+  <div class="main_panel__video_library_panel">
+    <button mat-raised-button color="primary" (click)="showDemo()">Example library</button>
+    <button mat-raised-button color="primary">Your library</button>
+    <button mat-stroked-button (click)="showIcons()">icons</button>
+    <button mat-stroked-button (click)="showList()">list</button>
+  </div>
 
-  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-      <button mat-icon-button disabled></button>
-      {{node.item}}
-    </mat-tree-node>
-    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-      <button mat-icon-button
-              [attr.aria-label]="'toggle ' + node.filname" matTreeNodeToggle>
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-        </mat-icon>
-      </button>
-      {{node.item}}
-      <mat-progress-bar *ngIf="node.isLoading"
-                        mode="indeterminate"
-                        class="example-tree-progress-bar"></mat-progress-bar>
-    </mat-tree-node>
-  </mat-tree>
+  <div class="main_panel__video_library" *ngIf="demo">
+
+    <div class="main_panel__video_library_sub" *ngIf="icons; else listBlock">
+
+      <mat-card *ngFor="let demoVideo of demoList">
+        <img mat-card-image (click)="this.dialog.openDialog()" src={{demoVideo.imgUrl}} alt="video">
+        <mat-card-content>
+          <p class="first">{{demoVideo.title}}</p><br>
+          <p>
+            <span>{{demoVideo.views}}</span> views <br><span>{{demoVideo.likes}}</span> likes
+          </p>
+          <p>{{demoVideo.addingDate}}</p>
+        </mat-card-content>
+        <button mat-icon-button class="fav">
+          <i class="fas fa-heart" (click)="favourite($event)"> </i>
+        </button>
+        <button mat-icon-button disabled class="remove">
+          <i class="fas fa-trash"></i>
+        </button>
+      </mat-card>
+    </div>
 
 
+    <ng-template #listBlock>
+      <mat-list>
+        <mat-list-item *ngFor="let demoVideo of demoList">
+          <h4 mat-line>{{demoVideo.title}}</h4>
+          <p mat-line>{{demoVideo.views}} views| {{demoVideo.likes}} likes</p>
+          <button mat-icon-button class="fav">
+            <i class="fas fa-heart" (click)="favourite($event)"> </i>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
 
-</mat-card>
+  </div>
+</div>
 
 
 

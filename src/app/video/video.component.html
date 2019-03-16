@@ -8,11 +8,11 @@
 
   <div class="main_panel__subheader">
     <input type="text" placeholder="paste video id or link here" [(ngModel)]='videoId'>
-    <button mat-raised-button color="primary" (click)="findVideo(videoId)">Search</button>
+    <button mat-raised-button color="primary" (click)="findVideo(videoId); videoOutput.style.display ='flex'">Search</button>
   </div>
 
   <div class="main_panel__video_output" *ngIf="video">
-      <img class="video" src={{imagePath}} alt="video">
+      <img class="video" src={{imagePath}} alt="error occurred, we could not load your video">
 
     <div class="video_meta">
       <span class="views"> {{ video.items[0].statistics.viewCount }} views</span>
@@ -21,53 +21,23 @@
 
     <span class="video_title"> {{ video.items[0].snippet.title }} </span>
     <button mat-fab color="primary" class="add_video" (click)="addToMyLibrary()">+</button>
+    <button class="close" (click)="this.video = ''"><i class="far fa-window-close"></i></button>
   </div>
   <!--<ng-template #wrongInput><p>Wrong input. Please try insert ID or video url one more time.</p></ng-template>-->
 
   <div class="main_panel__video_library_panel">
     <button mat-raised-button color="primary" (click)="showDemo()">Example library</button>
-    <button mat-raised-button color="primary">Your library</button>
+    <button mat-raised-button color="primary" (click)="showUser()">Your library</button>
     <button mat-stroked-button (click)="showIcons()">icons</button>
     <button mat-stroked-button (click)="showList()">list</button>
   </div>
 
-  <div class="main_panel__video_library" *ngIf="demo">
+  <app-demo-library class="main_panel__video_library" *ngIf="demo" [demoList]="this.demoList" [icons]="this.icons"></app-demo-library>
 
-    <div class="main_panel__video_library_sub" *ngIf="icons; else listBlock">
+  <app-user-library class="main_panel__video_library" *ngIf="user" [demoList]="this.userLibrary" [icons]="this.icons"></app-user-library>
 
-      <mat-card *ngFor="let demoVideo of demoList">
-        <img mat-card-image (click)="this.dialog.openDialog()" src={{demoVideo.imgUrl}} alt="video">
-        <mat-card-content>
-          <p class="first">{{demoVideo.title}}</p><br>
-          <p>
-            <span>{{demoVideo.views}}</span> views <br><span>{{demoVideo.likes}}</span> likes
-          </p>
-          <p>{{demoVideo.addingDate}}</p>
-        </mat-card-content>
-        <button mat-icon-button class="fav">
-          <i class="fas fa-heart" (click)="favourite($event)"> </i>
-        </button>
-        <button mat-icon-button disabled class="remove">
-          <i class="fas fa-trash"></i>
-        </button>
-      </mat-card>
-    </div>
-
-
-    <ng-template #listBlock>
-      <mat-list>
-        <mat-list-item *ngFor="let demoVideo of demoList">
-          <h4 mat-line>{{demoVideo.title}}</h4>
-          <p mat-line>{{demoVideo.views}} views| {{demoVideo.likes}} likes</p>
-          <button mat-icon-button class="fav">
-            <i class="fas fa-heart" (click)="favourite($event)"> </i>
-          </button>
-        </mat-list-item>
-      </mat-list>
-    </ng-template>
-
-  </div>
 </div>
+
 
 
 

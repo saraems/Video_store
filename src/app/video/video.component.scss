@@ -77,6 +77,14 @@
   border: 1px solid lightgray;
   box-shadow: 8px 10px 20px 0 rgba(46,61,73,.15);
 
+  .video_image_container {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
   .video_meta {
     position: absolute;
     bottom: 15px;
@@ -100,6 +108,21 @@
     bottom: -20px;
     right: -20px;
   }
+
+  .close {
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    top:10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      color: lightgray;
+    }
+  }
 }
 
 .main_panel__video_library {
@@ -109,71 +132,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-}
-
-mat-card {
-  width: 17%;
-  margin: 1% 1% 1% 10px;
-  min-height: 195px;
-  position: relative;
-  justify-content: space-between;
-
-  .mat-card-image {
-    margin-bottom: 5px;
-  }
-
-
-
-  .fav {
-    position: absolute;
-    color: lightgray;
-    bottom: 5px;
-    right: 5px;
-    z-index: 2;
-
-    &:hover {
-      color: crimson;
-      cursor: pointer;
-    }
-
-    .favourite {
-      color: crimson;
-    }
-  }
-
-  .remove {
-    position: absolute;
-    bottom: 5px;
-    right: 23px;
-    z-index: 2;
-    transform: scale(0.8);
-
-    &:hover {
-      color: cadetblue;
-      cursor: pointer;
-    }
-  }
-}
-
-
-.mat-card-content{
-  height: max-content;
-  //display: flex;
-  ////flex-grow: 2;
-  //justify-content: space-between;
-  //flex-direction: column;
-  margin-bottom: 0;
-
-  p {
-    display: block;
-    font-size: 10px;
-    &.first {
-      margin-bottom: 10px;
-    }
-  }
-  span {
-    font-weight: bold;
-  }
 }
 
 .main_panel__video_library_panel {
@@ -186,13 +144,6 @@ mat-card {
   button {
     margin-left: 5px
   }
-
 }
 
-.main_panel__video_library_sub, .mat-list {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-}
+

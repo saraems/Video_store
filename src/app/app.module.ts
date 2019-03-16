@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VideoComponent } from './video/video.component';
 import { DialogExampleComponent } from './dialog-example/dialog-example.component';
+import { DemoLibraryComponent } from './demo-library/demo-library.component';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material';
+import { UserLibraryComponent } from './user-library/user-library.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { MatDialogModule } from '@angular/material';
     AppComponent,
     VideoComponent,
     DialogExampleComponent,
+    DemoLibraryComponent,
+    UserLibraryComponent,
   ],
   imports: [
     BrowserModule,

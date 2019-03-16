@@ -1,0 +1,70 @@
+.main_panel__video_library_sub, .mat-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-card {
+  width: 17%;
+  margin: 1% 1% 1% 10px;
+  min-height: 195px;
+  position: relative;
+  justify-content: space-between;
+
+  .mat-card-image {
+    margin-bottom: 5px;
+  }
+
+  .fav {
+    position: absolute;
+    color: lightgray;
+    bottom: 5px;
+    right: 5px;
+    z-index: 2;
+
+    &:hover {
+      color: crimson;
+      cursor: pointer;
+    }
+
+    .favourite {
+      color: crimson;
+    }
+  }
+
+  .remove {
+    position: absolute;
+    bottom: 5px;
+    right: 23px;
+    z-index: 2;
+    transform: scale(0.8);
+
+    &:hover {
+      color: cadetblue;
+      cursor: pointer;
+    }
+  }
+}
+
+
+.mat-card-content{
+  height: max-content;
+  //display: flex;
+  ////flex-grow: 2;
+  //justify-content: space-between;
+  //flex-direction: column;
+  margin-bottom: 0;
+
+  p {
+    display: block;
+    font-size: 10px;
+    &.first {
+      margin-bottom: 10px;
+    }
+  }
+  span {
+    font-weight: bold;
+  }
+}

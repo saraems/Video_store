@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
 import { demoList } from '../demoVideosList';
 import {youtubeResponse} from "../YoutubeResponse";
-import { DialogOverviewExample } from '../dialog-overview.service';
 
 
 @Component({
@@ -17,12 +16,13 @@ export class VideoComponent implements OnInit {
   imagePath: string;
   userLibrary: object[];
   demo: boolean;
+  user: boolean;
   demoList: object[] = demoList;
   private error: any;
   icons: boolean;
   list: boolean;
 
-  constructor(private dataService: DataService, private dialog: DialogOverviewExample) {}
+  constructor(private dataService: DataService) {}
   createUrl(videoId: string) {
     const apiUrl = `https://www.googleapis.com/youtube/v3/`;
     const userKey = `&key=AIzaSyBcMNQVkmuIp8vI5QXDXQWef_AhV_zP5Yk`;
@@ -53,7 +53,7 @@ export class VideoComponent implements OnInit {
     const dd = today.getDate();
     const mm = today.getMonth() + 1;
     const yyyy = today.getFullYear();
-    return mm + '/' + dd + '/' + yyyy;
+    return dd + '/' + mm + '/' + yyyy;
   }
   addToMyLibrary(): void {
     const videoLibraryTemplate = {
@@ -73,16 +73,15 @@ export class VideoComponent implements OnInit {
     this.demo = !this.demo;
     console.log(this.demo, this.icons, this.list);
   }
-  // favourite(e) {
-  //   e.target.classList.toggle('favourite')
-  // }
+  showUser():void {
+    this.user = !this.user;
+  }
+
   showList():void {
     this.icons = false;
-    console.log('Lists', this.list);
   }
   showIcons():void {
     this.icons = true;
-    console.log('ICONS', this.icons);
   }
 
     ngOnInit() {

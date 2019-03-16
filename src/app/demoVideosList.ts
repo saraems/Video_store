@@ -7,20 +7,20 @@ export const demoList = [
     likes: '355840',
     imgUrl: 'https://i.ytimg.com/vi/F3Bar3rty_4/hqdefault.jpg',
     favourite: false,
-    addingDate: '3/12/2019'
+    addingDate: '11/12/2019'
   },
   {
-    filmId: 1,
+    filmId: 2,
     externalFilmId: '_8AGUrvrlqk',
     title: 'Monika Brodka - Saute [Granda]',
     views: '8685112',
     likes: '23258',
     imgUrl: 'https://i.ytimg.com/vi/_8AGUrvrlqk/hqdefault.jpg',
     favourite: false,
-    addingDate: '3/12/2019'
+    addingDate: '11/12/2019'
   },
   {
-    filmId: 1,
+    filmId: 3,
     externalFilmId: 'lHRAPIwsS5I',
     title: 'Ibeyi - River',
     views: '20974207',
@@ -30,7 +30,7 @@ export const demoList = [
     addingDate: '3/12/2019'
   },
   {
-    filmId: 1,
+    filmId: 4,
     externalFilmId: 'CTwiB1uw9sQ',
     title: 'MARUV & BOOSIN - Drunk Groove (Official Video)',
     views: '94336960',
@@ -40,7 +40,7 @@ export const demoList = [
     addingDate: '3/12/2019'
   },
   {
-    filmId: 1,
+    filmId: 5,
     externalFilmId: '6THHrPyZQuQ',
     title: 'ZAZ – Qué vendrá (Clip officiel)',
     views: '17437424',
@@ -50,7 +50,7 @@ export const demoList = [
     addingDate: '3/12/2019'
   },
   {
-    filmId: 1,
+    filmId: 6,
     externalFilmId: 'QRxH-II0OsA',
     title: 'Męskie Granie Orkiestra 2018 (Kortez, Podsiadło, Zalewski) – Początek (LIVE) Official Video',
     views: '71273697',
@@ -60,17 +60,17 @@ export const demoList = [
     addingDate: '3/12/2019'
   },
   {
-    filmId: 1,
+    filmId: 7,
     externalFilmId: '59Q_lhgGANc',
     title: 'Jain - Makeba (Official Video)',
     views: '80055304',
     likes: '691885',
     imgUrl: 'https://i.ytimg.com/vi/59Q_lhgGANc/hqdefault.jpg',
     favourite: false,
-    addingDate: '3/12/2019'
+    addingDate: '1/12/2019'
   },
   {
-    filmId: 1,
+    filmId: 8,
     externalFilmId: 'Q527XDLEpfU',
     title: 'Maluma - Mala Mía (Official Video)',
     views: '225870216',
@@ -80,7 +80,7 @@ export const demoList = [
     addingDate: '3/12/2019'
   },
   {
-    filmId: 1,
+    filmId: 9,
     externalFilmId: 'uw2NtAJwikY',
     title: 'Dlaczego nasze uniwersytety są na końcu rankingów?',
     views: '301762',
@@ -90,7 +90,7 @@ export const demoList = [
     addingDate: '3/12/2019'
   },
   {
-    filmId: 1,
+    filmId: 10,
     externalFilmId: 'Vq9jWAxUIEs',
     title: 'Fréro Delavega - Ton visage',
     views: '21473086',
@@ -98,7 +98,18 @@ export const demoList = [
     imgUrl: 'https://i.ytimg.com/vi/Vq9jWAxUIEs/hqdefault.jpg',
     favourite: false,
     addingDate: '3/12/2019'
-  }
+  },
+{
+  filmId: 11,
+  externalFilmId: '-53w2mv_upw',
+  title: 'Sister Sparrow - Sugar  [Official Video]',
+  views: '275022',
+  likes: '2189',
+  imgUrl: 'https://i.ytimg.com/vi/-53w2mv_upw/hqdefault.jpg',
+  favourite: false,
+  addingDate: '01/03/2019'
+},
+
 ];
 
 

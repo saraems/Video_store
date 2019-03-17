@@ -1,0 +1,30 @@
+
+  <div *ngFor="let demoVideo of activePage">
+    <mat-card>
+      <img mat-card-image (click)="openDialog(demoVideo)" src={{demoVideo.imgUrl}} alt="video">
+      <mat-card-content>
+        <p class="first">{{demoVideo.title}}</p><br>
+        <p>
+          <span>{{demoVideo.views}}</span> views <br><span>{{demoVideo.likes}}</span> likes
+        </p>
+        <p>{{demoVideo.addingDate}}</p>
+      </mat-card-content>
+      <button mat-icon-button class="fav">
+        <i class="fas fa-heart" (click)="favourite($event)"> </i>
+      </button>
+      <button mat-icon-button class="remove">
+        <i class="fas fa-trash"></i>
+      </button>
+      <button mat-icon-button class="play" (click)="openDialog(demoVideo)">
+        <i class="fas fa-play"></i>
+      </button>
+    </mat-card>
+  </div>
+
+
+
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="onPageChanged($event)">
+</mat-paginator>

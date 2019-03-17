@@ -1,116 +1,134 @@
 export const demoList = [
   {
     filmId: 1,
-    externalFilmId: 'F3Bar3rty_4',
-    title: 'Alef - Sol',
-    views: '69374148',
-    likes: '355840',
-    imgUrl: 'https://i.ytimg.com/vi/F3Bar3rty_4/hqdefault.jpg',
+    externalFilmId: "3ZIgdr0a07o",
+    title: "Natalia Lafourcade - Mi Tierra Veracruzana (En Manos de Los Macorinos)",
+    views: "11167542",
+    likes: "58655",
+    imgUrl: "https://i.ytimg.com/vi/3ZIgdr0a07o/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/3ZIgdr0a07o",
     favourite: false,
-    addingDate: '11/12/2019'
+    addingDate: "16/3/2019"
   },
   {
-    filmId: 2,
-    externalFilmId: '_8AGUrvrlqk',
-    title: 'Monika Brodka - Saute [Granda]',
-    views: '8685112',
-    likes: '23258',
-    imgUrl: 'https://i.ytimg.com/vi/_8AGUrvrlqk/hqdefault.jpg',
+    filmId: 1,
+    externalFilmId: "MntbN1DdEP0",
+    title: "Shakira - Addicted to You (Video Oficial)",
+    views: "220938807",
+    likes: "715676",
+    imgUrl: "https://i.ytimg.com/vi/MntbN1DdEP0/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/MntbN1DdEP0",
     favourite: false,
-    addingDate: '11/12/2019'
+    addingDate: "16/3/2019"
   },
   {
-    filmId: 3,
-    externalFilmId: 'lHRAPIwsS5I',
-    title: 'Ibeyi - River',
-    views: '20974207',
-    likes: '190758',
-    imgUrl: 'https://i.ytimg.com/vi/lHRAPIwsS5I/hqdefault.jpg',
+    filmId: 1,
+    externalFilmId: "kiMpvEZ8DJ4",
+    title: "Ofenbach - Be Mine (Extended)",
+    views: "23454460",
+    likes: "91208",
+    imgUrl: "https://i.ytimg.com/vi/kiMpvEZ8DJ4/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/kiMpvEZ8DJ4",
     favourite: false,
-    addingDate: '3/12/2019'
+    addingDate: "16/3/2019"
   },
   {
-    filmId: 4,
-    externalFilmId: 'CTwiB1uw9sQ',
-    title: 'MARUV & BOOSIN - Drunk Groove (Official Video)',
-    views: '94336960',
-    likes: '595447',
-    imgUrl: 'https://i.ytimg.com/vi/CTwiB1uw9sQ/hqdefault.jpg',
+    filmId: 1,
+    externalFilmId: "lHRAPIwsS5I",
+    title: "Ibeyi - River",
+    views: "21012892",
+    likes: "191024",
+    imgUrl: "https://i.ytimg.com/vi/lHRAPIwsS5I/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/lHRAPIwsS5I",
     favourite: false,
-    addingDate: '3/12/2019'
+    addingDate: "16/3/2019"
   },
   {
-    filmId: 5,
-    externalFilmId: '6THHrPyZQuQ',
-    title: 'ZAZ – Qué vendrá (Clip officiel)',
-    views: '17437424',
-    likes: '163806',
-    imgUrl: 'https://i.ytimg.com/vi/6THHrPyZQuQ/hqdefault.jpg',
+    filmId: 1,
+    externalFilmId: "Z1dIRjazpBw",
+    title: "Soha - Mil Pasos",
+    views: "32061068",
+    likes: "171695",
+    imgUrl: "https://i.ytimg.com/vi/Z1dIRjazpBw/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/Z1dIRjazpBw",
     favourite: false,
-    addingDate: '3/12/2019'
+   addingDate: "16/3/2019"
   },
   {
-    filmId: 6,
-    externalFilmId: 'QRxH-II0OsA',
-    title: 'Męskie Granie Orkiestra 2018 (Kortez, Podsiadło, Zalewski) – Początek (LIVE) Official Video',
-    views: '71273697',
-    likes: '304085',
-    imgUrl: 'https://i.ytimg.com/vi/QRxH-II0OsA/hqdefault.jpg',
+    filmId: 1,
+    externalFilmId: "F3Bar3rty_4",
+    title: "Alef - Sol",
+    views: "69507139",
+    likes: "356389",
+    imgUrl: "https://i.ytimg.com/vi/F3Bar3rty_4/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/F3Bar3rty_4",
     favourite: false,
-    addingDate: '3/12/2019'
+    addingDate: "16/3/2019"
   },
   {
-    filmId: 7,
-    externalFilmId: '59Q_lhgGANc',
-    title: 'Jain - Makeba (Official Video)',
-    views: '80055304',
-    likes: '691885',
-    imgUrl: 'https://i.ytimg.com/vi/59Q_lhgGANc/hqdefault.jpg',
+    filmId: 1,
+    externalFilmId: "6THHrPyZQuQ",
+    title: "ZAZ – Qué vendrá (Clip officiel)",
+    views: "17866797",
+    likes: "166484",
+    imgUrl: "https://i.ytimg.com/vi/6THHrPyZQuQ/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/6THHrPyZQuQ",
     favourite: false,
-    addingDate: '1/12/2019'
+    addingDate: "16/3/2019"
   },
   {
-    filmId: 8,
-    externalFilmId: 'Q527XDLEpfU',
-    title: 'Maluma - Mala Mía (Official Video)',
-    views: '225870216',
-    likes: '1472512',
-    imgUrl: 'https://i.ytimg.com/vi/Q527XDLEpfU/hqdefault.jpg',
+    filmId: 1,
+    externalFilmId: "l_ZyDlTfndE",
+    title: "Mon Laferte - Amárrame (Video Oficial) ft. Juanes",
+    views: "275057851",
+    likes: "1044245",
+    imgUrl: "https://i.ytimg.com/vi/l_ZyDlTfndE/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/l_ZyDlTfndE",
     favourite: false,
-    addingDate: '3/12/2019'
+    addingDate: "16/3/2019"
   },
   {
-    filmId: 9,
-    externalFilmId: 'uw2NtAJwikY',
-    title: 'Dlaczego nasze uniwersytety są na końcu rankingów?',
-    views: '301762',
-    likes: '16373',
-    imgUrl: 'https://i.ytimg.com/vi/uw2NtAJwikY/hqdefault.jpg',
+    filmId: 1,
+    externalFilmId: "CTwiB1uw9sQ",
+    title: "MARUV & BOOSIN - Drunk Groove (Official Video)",
+    views: "95368272",
+    likes: "599861",
+    imgUrl: "https://i.ytimg.com/vi/CTwiB1uw9sQ/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/CTwiB1uw9sQ",
     favourite: false,
-    addingDate: '3/12/2019'
+    addingDate: "16/3/2019"
   },
   {
-    filmId: 10,
-    externalFilmId: 'Vq9jWAxUIEs',
-    title: 'Fréro Delavega - Ton visage',
-    views: '21473086',
-    likes: '124878',
-    imgUrl: 'https://i.ytimg.com/vi/Vq9jWAxUIEs/hqdefault.jpg',
+    filmId: 1,
+    externalFilmId: "LhYYd5adVY4",
+    title: "Sleigh Bells - Infinity Guitars",
+    views: "921008",
+    likes: "4293",
+    imgUrl: "https://i.ytimg.com/vi/LhYYd5adVY4/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/LhYYd5adVY4",
     favourite: false,
-    addingDate: '3/12/2019'
+    addingDate: "16/3/2019"
   },
-{
-  filmId: 11,
-  externalFilmId: '-53w2mv_upw',
-  title: 'Sister Sparrow - Sugar  [Official Video]',
-  views: '275022',
-  likes: '2189',
-  imgUrl: 'https://i.ytimg.com/vi/-53w2mv_upw/hqdefault.jpg',
-  favourite: false,
-  addingDate: '01/03/2019'
-},
-
+  {
+    filmId: 1,
+    externalFilmId: "T6fMx9E41ug",
+    title: "Paloma Faith - Can't Rely on You (Live from the Kitchen)",
+    views: "1823619",
+    likes: "16093",
+    imgUrl: "https://i.ytimg.com/vi/T6fMx9E41ug/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/T6fMx9E41ug",
+    favourite: false,
+    addingDate: "16/3/2019"
+  },
+  {
+    filmId: 1,
+    externalFilmId: "59Q_lhgGANc",
+    title: "Jain - Makeba (Official Video)",
+    views: "80514568",
+    likes: "695736",
+    imgUrl: "https://i.ytimg.com/vi/59Q_lhgGANc/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/59Q_lhgGANc",
+    favourite: false,
+    addingDate: "16/3/2019"
+  }
 ];
-
-
-

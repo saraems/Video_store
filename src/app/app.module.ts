@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { VideoComponent } from './video/video.component';
 import { DialogExampleComponent } from './dialog-example/dialog-example.component';
 import { DemoLibraryComponent } from './demo-library/demo-library.component';
+import { UserLibraryComponent } from './user-library/user-library.component';
+import { PaginationComponent } from './pagination/pagination.component';
+
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialogModule } from '@angular/material';
-import { UserLibraryComponent } from './user-library/user-library.component';
+import { MatDialogModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTableModule} from '@angular/material';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { UserLibraryComponent } from './user-library/user-library.component';
     DialogExampleComponent,
     DemoLibraryComponent,
     UserLibraryComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +39,13 @@ import { UserLibraryComponent } from './user-library/user-library.component';
     MatButtonModule,
     MatListModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatInputModule
   ],
+  entryComponents: [DialogExampleComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

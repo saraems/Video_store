@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import { DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dialog-example',
@@ -7,9 +8,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
   styleUrls: ['./dialog-example.component.scss']
 })
 export class DialogExampleComponent implements OnInit {
+  controllerSrc: any;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogExampleComponent>,
+    public dialogRef: MatDialogRef<DialogExampleComponent>, private sanitizer: DomSanitizer,
     @Inject(MAT_DIALOG_DATA) public data) {}
 
   onNoClick(): void {
@@ -17,5 +19,7 @@ export class DialogExampleComponent implements OnInit {
   }
 
   ngOnInit() {
+    const url= this.data.video.videoUrl;
+    this.controllerSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }

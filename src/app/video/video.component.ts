@@ -63,6 +63,7 @@ export class VideoComponent implements OnInit {
       views: this.video.items[0].statistics.viewCount,
       likes: this.video.items[0].statistics.likeCount,
       imgUrl: this.video.items[0].snippet.thumbnails.high.url,
+      videoUrl: 'https://www.youtube.com/embed/' + this.video.items[0].id,
       favourite: false,
       addingDate: VideoComponent.getTodayDate()
     };
@@ -74,6 +75,7 @@ export class VideoComponent implements OnInit {
     console.log(this.demo, this.icons, this.list);
   }
   showUser():void {
+    this.demo = false;
     this.user = !this.user;
   }
 

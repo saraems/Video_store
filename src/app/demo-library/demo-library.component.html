@@ -1,7 +1,7 @@
   <div class="main_panel__video_library_sub" *ngIf="icons; else listBlock">
 
     <mat-card *ngFor="let demoVideo of demoList">
-      <img mat-card-image (click)="openDialog()" src={{demoVideo.imgUrl}} alt="video">
+      <img mat-card-image (click)="openDialog(demoVideo)" src={{demoVideo.imgUrl}} alt="video">
       <mat-card-content>
         <p class="first">{{demoVideo.title}}</p><br>
         <p>
@@ -12,21 +12,32 @@
       <button mat-icon-button class="fav">
         <i class="fas fa-heart" (click)="favourite($event)"> </i>
       </button>
-      <button mat-icon-button disabled class="remove">
+      <button mat-icon-button class="remove">
         <i class="fas fa-trash"></i>
       </button>
+      <button mat-icon-button class="play" (click)="openDialog(demoVideo)">
+        <i class="fas fa-play"></i>
+      </button>
+
     </mat-card>
+
+
+    <ng-template #listBlock>
+      <mat-list>
+        <mat-list-item *ngFor="let demoVideo of demoList" (click)="dialog.openDialog()">
+          <img matListAvatar src={{demoVideo.imgUrl}} (click)="openDialog(demoVideo)">
+          <p mat-line>{{demoVideo.title}}</p>
+          <!--<p mat-line>{{demoVideo.views}} views | {{demoVideo.likes}} likes</p>-->
+          <button class="trash">
+            <i class="fas fa-trash"></i>
+          </button>
+          <button class="play" (click)="openDialog(demoVideo)">
+            <i class="fas fa-play"></i>
+          </button>
+          <button mat-icon-button class="fav">
+            <i class="fas fa-heart" (click)="favourite($event)"> </i>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
   </div>
-
-  <ng-template #listBlock>
-    <mat-list>
-      <mat-list-item *ngFor="let demoVideo of demoList" (click)="dialog.openDialog()">
-        <h4 mat-line>{{demoVideo.title}}</h4>
-        <p mat-line>{{demoVideo.views}} views| {{demoVideo.likes}} likes</p>
-        <button mat-icon-button class="fav">
-          <i class="fas fa-heart" (click)="favourite($event)"> </i>
-        </button>
-      </mat-list-item>
-    </mat-list>
-  </ng-template>
-

@@ -32,9 +32,12 @@
     <button mat-stroked-button (click)="showList()">list</button>
   </div>
 
-  <app-demo-library class="main_panel__video_library" *ngIf="demo" [demoList]="this.demoList" [icons]="this.icons"></app-demo-library>
 
+  <app-pagination *ngIf="demo" [demoList]="this.demoList" [icons]="this.icons" [length]="this.demoList.length">
+    <!--<app-demo-library class="main_panel__video_library"></app-demo-library>-->
+  </app-pagination>
   <app-user-library class="main_panel__video_library" *ngIf="user" [demoList]="this.userLibrary" [icons]="this.icons"></app-user-library>
+
 
 </div>
 

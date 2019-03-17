@@ -15,6 +15,7 @@ mat-card {
 
   .mat-card-image {
     margin-bottom: 5px;
+    cursor: pointer;
   }
 
   .fav {
@@ -36,8 +37,9 @@ mat-card {
 
   .remove {
     position: absolute;
+    color: lightgray;
     bottom: 5px;
-    right: 23px;
+    right: 39px;
     z-index: 2;
     transform: scale(0.8);
 
@@ -46,15 +48,24 @@ mat-card {
       cursor: pointer;
     }
   }
-}
 
+  .play {
+    position: absolute;
+    color: lightgray;
+    bottom: 5px;
+    right: 22px;
+    z-index: 2;
+    transform: scale(0.8);
+
+    &:hover {
+      color: yellow;
+      cursor: pointer;
+    }
+  }
+}
 
 .mat-card-content{
   height: max-content;
-  //display: flex;
-  ////flex-grow: 2;
-  //justify-content: space-between;
-  //flex-direction: column;
   margin-bottom: 0;
 
   p {
@@ -68,3 +79,5 @@ mat-card {
     font-weight: bold;
   }
 }
+
+

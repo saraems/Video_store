@@ -14,16 +14,15 @@ export class DemoLibraryComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
-  openDialog(): void {
+  openDialog(url): void {
+    console.log(url);
 
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = true;
-    dialogConfig.position = {
-      'top': '10%',
-      'left': '20%'
+    dialogConfig.data = {
+      video: url
     };
-
     this.dialog.open(DialogExampleComponent, dialogConfig);
   }
 

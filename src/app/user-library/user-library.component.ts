@@ -1,4 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {DialogExampleComponent} from "../dialog-example/dialog-example.component";
 
 @Component({
   selector: 'app-user-library',
@@ -8,7 +10,59 @@ import {Component, Input, OnInit} from '@angular/core';
 export class UserLibraryComponent implements OnInit {
   @Input() demoList: Object[];
   @Input() icons: boolean;
+  @Output() onProp = new EventEmitter<string>();
 
-  ngOnInit() {
+  favouriteUserList;
+
+  constructor(public dialog: MatDialog) {}
+
+  length: number;
+  // MatPaginator Inputs
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 20, 50, 100];
+
+  activePage = [];
+
+  ngOnInit(): void {
+    this.length = this.demoList.length;
+    this.activePage = this.demoList.slice(0,this.pageSize);
+    this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
+  }
+
+  openDialog(url): void {
+    console.log(url);
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      video: url
+    };
+    this.dialog.open(DialogExampleComponent, dialogConfig);
+  }
+
+  favourite(video, e) {
+    const index = this.favouriteUserList.indexOf(video);
+    if (index === -1) {
+      this.favouriteUserList.push(video);
+      video.favourite = !video.favourite;
+    } else {
+      this.favouriteUserList.splice(index, index + 1)
+    }
+    e.target.classList.toggle('liked');
+    console.log(this.favouriteUserList);
+    this.onProp.emit(this.favouriteUserList);
+    localStorage.setItem('favouriteUserList', JSON.stringify(this.favouriteUserList))
+  }
+
+  remove(video) {
+    const index = this.favouriteUserList.indexOf(video);
+    this.demoList.splice(index, index + 1)
+  }
+
+  onPageChanged(e) {
+    let firstCut = e.pageIndex * e.pageSize;
+    let secondCut = firstCut + e.pageSize;
+    this.activePage = this.demoList.slice(firstCut, secondCut);
   }
 }

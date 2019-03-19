@@ -1,43 +1,57 @@
   <div class="main_panel__video_library_sub" *ngIf="icons; else listBlock">
 
-    <mat-card *ngFor="let demoVideo of demoList">
-      <img mat-card-image (click)="openDialog(demoVideo)" src={{demoVideo.imgUrl}} alt="video">
-      <mat-card-content>
-        <p class="first">{{demoVideo.title}}</p><br>
-        <p>
-          <span>{{demoVideo.views}}</span> views <br><span>{{demoVideo.likes}}</span> likes
-        </p>
-        <p>{{demoVideo.addingDate}}</p>
-      </mat-card-content>
-      <button mat-icon-button class="fav">
-        <i class="fas fa-heart" (click)="favourite($event)"> </i>
-      </button>
-      <button mat-icon-button class="remove">
-        <i class="fas fa-trash"></i>
-      </button>
-      <button mat-icon-button class="play" (click)="openDialog(demoVideo)">
-        <i class="fas fa-play"></i>
-      </button>
+    <div class="main_panel__video_library_icons_container">
+      <mat-card *ngFor="let demoVideo of activePage">
+        <img mat-card-image (click)="openDialog(demoVideo)" src={{demoVideo.imgUrl}} alt="video">
+        <mat-card-content>
+          <p class="first">{{demoVideo.title}}</p>
+          <p>
+            <span>{{demoVideo.views}}</span> views <br><span>{{demoVideo.likes}}</span> likes
+          </p>
+          <p>{{demoVideo.addingDate}}</p>
+        </mat-card-content>
+        <button mat-icon-button class="fav" (click)="favourite(demoVideo, $event)">
+          <i class="fas fa-heart"> </i>
+        </button>
+        <button mat-icon-button class="remove" (click)="remove(demoVideo)">
+          <i class="fas fa-trash"></i>
+        </button>
+        <button mat-icon-button class="play" (click)="openDialog(demoVideo)">
+          <i class="fas fa-play"></i>
+        </button>
+      </mat-card>
+    </div>
 
-    </mat-card>
-
-
-    <ng-template #listBlock>
-      <mat-list>
-        <mat-list-item *ngFor="let demoVideo of demoList" (click)="dialog.openDialog()">
-          <img matListAvatar src={{demoVideo.imgUrl}} (click)="openDialog(demoVideo)">
-          <p mat-line>{{demoVideo.title}}</p>
-          <!--<p mat-line>{{demoVideo.views}} views | {{demoVideo.likes}} likes</p>-->
-          <button class="trash">
-            <i class="fas fa-trash"></i>
-          </button>
-          <button class="play" (click)="openDialog(demoVideo)">
-            <i class="fas fa-play"></i>
-          </button>
-          <button mat-icon-button class="fav">
-            <i class="fas fa-heart" (click)="favourite($event)"> </i>
-          </button>
-        </mat-list-item>
-      </mat-list>
-    </ng-template>
+    <mat-paginator [length]="length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="onPageChanged($event)">
+    </mat-paginator>
   </div>
+
+    <ng-template #listBlock class="main_panel__video_library_sub">
+      <div class="main_panel__video_library_icons_container">
+        <mat-list>
+          <mat-list-item *ngFor="let demoVideo of activePage" (click)="dialog.openDialog()">
+            <img matListAvatar src={{demoVideo.imgUrl}} (click)="openDialog(demoVideo)">
+            <p mat-line>{{demoVideo.title}}</p>
+            <!--<p mat-line>{{demoVideo.views}} views | {{demoVideo.likes}} likes</p>-->
+            <button class="action remove" (click)="remove(demoVideo)">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button class="action play" (click)="openDialog(demoVideo)">
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="action fav" (click)="favourite(demoVideo, $event)">
+              <i class="fas fa-heart"> </i>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <mat-paginator [length]="length"
+                     [pageSize]="pageSize"
+                     [pageSizeOptions]="pageSizeOptions"
+                     (page)="onPageChanged($event)">
+      </mat-paginator>
+    </ng-template>

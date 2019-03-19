@@ -30,13 +30,14 @@
     <button mat-raised-button color="primary" (click)="showUser()">Your library</button>
     <button mat-stroked-button (click)="showIcons()">icons</button>
     <button mat-stroked-button (click)="showList()">list</button>
+    <button mat-raised-button color="primary" (click)="showFavourite()">Favourite</button>
+
   </div>
 
 
-  <app-pagination *ngIf="demo" [demoList]="this.demoList" [icons]="this.icons" [length]="this.demoList.length">
-    <!--<app-demo-library class="main_panel__video_library"></app-demo-library>-->
-  </app-pagination>
-  <app-user-library class="main_panel__video_library" *ngIf="user" [demoList]="this.userLibrary" [icons]="this.icons"></app-user-library>
+  <app-demo-library class="main_panel__video_library" *ngIf="demo" [demoList]="this.demoList" [icons]="this.icons" (onProp)="changed($event)"></app-demo-library>
+  <app-user-library class="main_panel__video_library" *ngIf="user" [demoList]="this.userLibrary" [icons]="this.icons" (onProp)="changed($event)"></app-user-library>
+  <app-user-library class="main_panel__video_library" *ngIf="favourite" [demoList]="this.favouriteDemoList" [icons]="this.icons"></app-user-library>
 
 
 </div>

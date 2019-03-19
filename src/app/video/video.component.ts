@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {DataService} from '../data.service';
 import { demoList } from '../demoVideosList';
 import {youtubeResponse} from "../YoutubeResponse";
@@ -10,19 +10,24 @@ import {youtubeResponse} from "../YoutubeResponse";
   styleUrls: ['./video.component.scss'],
 })
 export class VideoComponent implements OnInit {
+
   video: any;
   videoId: string;
   fullUrl: string;
   imagePath: string;
-  userLibrary: object[];
   demo: boolean;
   user: boolean;
   demoList: object[] = demoList;
+  userLibrary: object[];
   private error: any;
   icons: boolean;
   list: boolean;
+  favourite: boolean;
+  favouriteDemoList: object[];
+  favouriteUserList: object[];
 
   constructor(private dataService: DataService) {}
+
   createUrl(videoId: string) {
     const apiUrl = `https://www.googleapis.com/youtube/v3/`;
     const userKey = `&key=AIzaSyBcMNQVkmuIp8vI5QXDXQWef_AhV_zP5Yk`;
@@ -66,16 +71,20 @@ export class VideoComponent implements OnInit {
       videoUrl: 'https://www.youtube.com/embed/' + this.video.items[0].id,
       favourite: false,
       addingDate: VideoComponent.getTodayDate()
-    };
+  };
     this.userLibrary.push(videoLibraryTemplate);
     console.log(this.userLibrary);
+    localStorage.setItem('userLibrary', JSON.stringify(this.userLibrary));
   }
   showDemo():void {
     this.demo = !this.demo;
-    console.log(this.demo, this.icons, this.list);
+    this.user = false;
+    this.favourite = false;
   }
   showUser():void {
+    this.userLibrary = JSON.parse(localStorage.getItem('userLibrary'));
     this.demo = false;
+    this.favourite = false;
     this.user = !this.user;
   }
 
@@ -85,10 +94,22 @@ export class VideoComponent implements OnInit {
   showIcons():void {
     this.icons = true;
   }
+  showFavourite() {
+    this.demo = false;
+    this.user = false;
+    this.favourite = !this.favourite;
+  };
+  changed(value) {
+    console.log(`Child changed!`, value);
+    this.favouriteDemoList = value;
+  }
 
     ngOnInit() {
     this.videoId = '';
-    this.userLibrary = [];
     this.icons = true;
+    this.favourite = false;
+    this.userLibrary = localStorage.userLibrary ? JSON.parse(localStorage.getItem('userLibrary')) : [];
+    this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
+    this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
   }
 }

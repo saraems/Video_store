@@ -1,13 +1,21 @@
-.main_panel__video_library_sub, .mat-list {
+.main_panel__video_library_sub {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main_panel__video_library_icons_container {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
 }
 
 mat-card {
-  width: 17%;
+  width: 12%;
   margin: 1% 1% 1% 10px;
   min-height: 195px;
   position: relative;
@@ -32,6 +40,13 @@ mat-card {
 
     .favourite {
       color: crimson;
+    }
+  }
+
+  .liked {
+    color: crimson;
+    &:hover {
+      color: lightgray;
     }
   }
 
@@ -65,6 +80,10 @@ mat-card {
 }
 
 .mat-card-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 95px;
   height: max-content;
   margin-bottom: 0;
 
@@ -80,4 +99,60 @@ mat-card {
   }
 }
 
+.mat-list-item {
+  font-size: 12px;
+  &:hover {
+    background-color: whitesmoke;
+  }
 
+  button {
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px;
+    color: lightgray;
+    background: transparent;
+    border: none;
+    outline: none;
+    transition: 0.1s ease-in;
+
+    &.fav:hover {
+      color: crimson;
+      cursor: pointer;
+    }
+
+    &.remove:hover {
+      color: cadetblue;
+      cursor: pointer;
+    }
+
+    &.play:hover {
+      color: yellow;
+      cursor: pointer;
+    }
+
+    &.liked {
+      color: crimson;
+      &:hover {
+        color: lightgray;
+      }
+    }
+  }
+}
+
+.matListAvatar {
+  cursor: pointer;
+}
+
+
+#listBlock {
+.mat-paginator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+}
+
+.mat-list {
+  width: 90%;
+}

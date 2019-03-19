@@ -95,7 +95,7 @@ export const demoList = [
     likes: "599861",
     imgUrl: "https://i.ytimg.com/vi/CTwiB1uw9sQ/hqdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/CTwiB1uw9sQ",
-    favourite: false,
+    favourite: true,
     addingDate: "16/3/2019"
   },
   {

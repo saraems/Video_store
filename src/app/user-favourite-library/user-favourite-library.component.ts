@@ -3,11 +3,11 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 import {DialogExampleComponent} from "../dialog-example/dialog-example.component";
 
 @Component({
-  selector: 'app-user-library',
-  templateUrl: './user-library.component.html',
-  styleUrls: ['./user-library.component.scss']
+  selector: 'app-user-favourite-library',
+  templateUrl: './user-favourite-library.component.html',
+  styleUrls: ['./user-favourite-library.component.scss']
 })
-export class UserLibraryComponent implements OnInit {
+export class UserFavouriteLibraryComponent implements OnInit {
   @Input() demoList: Object[];
   @Input() icons: boolean;
   @Output() onProp = new EventEmitter<string>();
@@ -47,7 +47,7 @@ export class UserLibraryComponent implements OnInit {
       this.favouriteUserList.push(video);
       video.favourite = !video.favourite;
     } else {
-      this.favouriteUserList.splice(index, index + 1)
+      this.favouriteUserList.splice(index, 1)
     }
     e.target.classList.toggle('liked');
     e.target.classList.toggle('notLiked');
@@ -62,6 +62,7 @@ export class UserLibraryComponent implements OnInit {
     e.target.parentElement.remove();
     console.log(this.demoList);
   }
+
 
   onPageChanged(e) {
     let firstCut = e.pageIndex * e.pageSize;

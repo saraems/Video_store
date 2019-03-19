@@ -13,7 +13,7 @@
         <button mat-icon-button class="fav" (click)="favourite(demoVideo, $event)">
           <i class="fas fa-heart"> </i>
         </button>
-        <button mat-icon-button class="remove" (click)="remove(demoVideo)">
+        <button mat-icon-button class="remove" (click)="remove(demoVideo, $event)">
           <i class="fas fa-trash"></i>
         </button>
         <button mat-icon-button class="play" (click)="openDialog(demoVideo)">
@@ -36,13 +36,13 @@
             <img matListAvatar src={{demoVideo.imgUrl}} (click)="openDialog(demoVideo)">
             <p mat-line>{{demoVideo.title}}</p>
             <!--<p mat-line>{{demoVideo.views}} views | {{demoVideo.likes}} likes</p>-->
-            <button class="action remove" (click)="remove(demoVideo)">
+            <button class="action remove" (click)="remove(demoVideo, $event)">
               <i class="fas fa-trash"></i>
             </button>
             <button class="action play" (click)="openDialog(demoVideo)">
               <i class="fas fa-play"></i>
             </button>
-            <button class="action fav" (click)="favourite(demoVideo, $event)">
+            <button class="action fav notLiked" (click)="favourite(demoVideo, $event)">
               <i class="fas fa-heart"> </i>
             </button>
           </mat-list-item>

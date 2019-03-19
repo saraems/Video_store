@@ -8,7 +8,7 @@
 
   <div class="main_panel__subheader">
     <input type="text" placeholder="paste video id or link here" [(ngModel)]='videoId'>
-    <button mat-raised-button color="primary" (click)="findVideo(videoId); videoOutput.style.display ='flex'">Search</button>
+    <button mat-raised-button color="primary" (click)="findVideo(videoId)">Search</button>
   </div>
 
   <div class="main_panel__video_output" *ngIf="video">
@@ -30,16 +30,15 @@
     <button mat-raised-button color="primary" (click)="showUser()">Your library</button>
     <button mat-stroked-button (click)="showIcons()">icons</button>
     <button mat-stroked-button (click)="showList()">list</button>
-    <button mat-raised-button color="primary" (click)="showFavourite()">Favourite</button>
+    <button mat-raised-button (click)="showFavourite()">show only favourite</button>
 
   </div>
 
 
-  <app-demo-library class="main_panel__video_library" *ngIf="demo" [demoList]="this.demoList" [icons]="this.icons" (onProp)="changed($event)"></app-demo-library>
-  <app-user-library class="main_panel__video_library" *ngIf="user" [demoList]="this.userLibrary" [icons]="this.icons" (onProp)="changed($event)"></app-user-library>
-  <app-user-library class="main_panel__video_library" *ngIf="favourite" [demoList]="this.favouriteDemoList" [icons]="this.icons"></app-user-library>
-
-
+  <app-demo-library class="main_panel__video_library" *ngIf="demo" [demoList]="this.demoList" [icons]="this.icons" (onProp)="updateDemoFavouriteList($event)"></app-demo-library>
+  <app-user-library class="main_panel__video_library" *ngIf="user" [demoList]="this.userLibrary" [icons]="this.icons" (onProp)="updateUserFavouriteList($event)"></app-user-library>
+  <app-user-favourite-library class="main_panel__video_library" *ngIf="favouriteDemo" [demoList]="this.favouriteDemoList" [icons]="this.icons" (onProp)="updateDemoFavouriteList($event)"></app-user-favourite-library>
+  <app-demo-favourite-library class="main_panel__video_library" *ngIf="favouriteUser" [demoList]="this.favouriteUserList" [icons]="this.icons" (onProp)="updateUserFavouriteList($event)"></app-demo-favourite-library>
 </div>
 
 

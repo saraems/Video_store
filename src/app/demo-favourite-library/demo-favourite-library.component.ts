@@ -3,30 +3,28 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 import {DialogExampleComponent} from "../dialog-example/dialog-example.component";
 
 @Component({
-  selector: 'app-user-library',
-  templateUrl: './user-library.component.html',
-  styleUrls: ['./user-library.component.scss']
+  selector: 'app-demo-favourite-library',
+  templateUrl: './demo-favourite-library.component.html',
+  styleUrls: ['./demo-favourite-library.component.scss']
 })
-export class UserLibraryComponent implements OnInit {
+export class DemoFavouriteLibraryComponent implements OnInit {
   @Input() demoList: Object[];
   @Input() icons: boolean;
-  @Output() onProp = new EventEmitter<string>();
-
-  favouriteUserList;
-
-  constructor(public dialog: MatDialog) {}
-
   length: number;
+  @Output() onProp = new EventEmitter<string>();
+  favouriteDemoList;
   // MatPaginator Inputs
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 20, 50, 100];
 
   activePage = [];
 
+  constructor(public dialog: MatDialog) {}
+
   ngOnInit(): void {
     this.length = this.demoList.length;
     this.activePage = this.demoList.slice(0,this.pageSize);
-    this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
+    this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
   }
 
   openDialog(url): void {
@@ -42,26 +40,28 @@ export class UserLibraryComponent implements OnInit {
   }
 
   favourite(video, e) {
-    const index = this.favouriteUserList.indexOf(video);
+    const index = this.favouriteDemoList.indexOf(video);
+    console.log(index, this.favouriteDemoList);
     if (index === -1) {
-      this.favouriteUserList.push(video);
+      this.favouriteDemoList.push(video);
       video.favourite = !video.favourite;
     } else {
-      this.favouriteUserList.splice(index, index + 1)
+      this.favouriteDemoList.splice(index, 1)
     }
     e.target.classList.toggle('liked');
     e.target.classList.toggle('notLiked');
-    console.log(this.favouriteUserList);
-    this.onProp.emit(this.favouriteUserList);
-    localStorage.setItem('favouriteUserList', JSON.stringify(this.favouriteUserList))
+    this.onProp.emit(this.favouriteDemoList);
+    console.log(this.favouriteDemoList);
+    localStorage.setItem('favouriteDemoList', JSON.stringify(this.favouriteDemoList))
   }
 
   remove(video, e) {
-    const index = this.favouriteUserList.indexOf(video);
-    this.favouriteUserList.splice(index, 1);
+    const index = this.favouriteDemoList.indexOf(video);
+    this.favouriteDemoList.splice(index, 1);
+    this.demoList.splice(index, 1);
     e.target.parentElement.remove();
-    console.log(this.demoList);
   }
+
 
   onPageChanged(e) {
     let firstCut = e.pageIndex * e.pageSize;

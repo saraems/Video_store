@@ -42,21 +42,25 @@ export class DemoLibraryComponent implements OnInit {
 
   favourite(video, e) {
     const index = this.favouriteDemoList.indexOf(video);
+    console.log(index, this.favouriteDemoList);
     if (index === -1) {
       this.favouriteDemoList.push(video);
       video.favourite = !video.favourite;
     } else {
-      this.favouriteDemoList.splice(index, index + 1)
+      this.favouriteDemoList.splice(index, 1)
     }
     e.target.classList.toggle('liked');
+    e.target.classList.toggle('notLiked');
     this.onProp.emit(this.favouriteDemoList);
     console.log(this.favouriteDemoList);
     localStorage.setItem('favouriteDemoList', JSON.stringify(this.favouriteDemoList))
   }
 
-  remove(video) {
-    const index = this.favouriteDemoList.indexOf(video);
-    this.demoList.splice(index, index + 1)
+  remove(video, e) {
+    const index = this.demoList.indexOf(video);
+    this.demoList.splice(index, 1);
+    e.target.parentElement.remove();
+    console.log(this.demoList);
   }
 
   onPageChanged(e) {

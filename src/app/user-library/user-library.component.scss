@@ -29,16 +29,19 @@ mat-card {
   .fav {
     position: absolute;
     color: lightgray;
+    cursor: pointer;
     bottom: 5px;
     right: 5px;
     z-index: 2;
 
     &:hover {
       color: crimson;
-      cursor: pointer;
     }
+  }
 
-    .favourite {
+  .notLiked {
+    color: lightgray;
+    &:hover {
       color: crimson;
     }
   }
@@ -115,10 +118,6 @@ mat-card {
     outline: none;
     transition: 0.1s ease-in;
 
-    &.fav:hover {
-      color: crimson;
-      cursor: pointer;
-    }
 
     &.remove:hover {
       color: cadetblue;
@@ -136,13 +135,19 @@ mat-card {
         color: lightgray;
       }
     }
+
+    &.notLiked {
+      color: lightgray;
+      &:hover {
+        color: crimson;
+      }
+    }
   }
 }
 
 .matListAvatar {
   cursor: pointer;
 }
-
 
 #listBlock {
   .mat-paginator {

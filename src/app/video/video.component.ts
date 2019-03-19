@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service';
 import { demoList } from '../demoVideosList';
 import {youtubeResponse} from "../YoutubeResponse";
@@ -15,14 +15,14 @@ export class VideoComponent implements OnInit {
   videoId: string;
   fullUrl: string;
   imagePath: string;
+  private error: any;
   demo: boolean;
   user: boolean;
+  icons: boolean;
   demoList: object[] = demoList;
   userLibrary: object[];
-  private error: any;
-  icons: boolean;
-  list: boolean;
-  favourite: boolean;
+  favouriteDemo: boolean;
+  favouriteUser: boolean;
   favouriteDemoList: object[];
   favouriteUserList: object[];
 
@@ -77,14 +77,16 @@ export class VideoComponent implements OnInit {
     localStorage.setItem('userLibrary', JSON.stringify(this.userLibrary));
   }
   showDemo():void {
-    this.demo = !this.demo;
     this.user = false;
-    this.favourite = false;
+    this.favouriteUser = false;
+    this.favouriteDemo = false;
+    this.demo = !this.demo;
   }
   showUser():void {
     this.userLibrary = JSON.parse(localStorage.getItem('userLibrary'));
     this.demo = false;
-    this.favourite = false;
+    this.favouriteUser = false;
+    this.favouriteDemo = false;
     this.user = !this.user;
   }
 
@@ -95,19 +97,35 @@ export class VideoComponent implements OnInit {
     this.icons = true;
   }
   showFavourite() {
-    this.demo = false;
-    this.user = false;
-    this.favourite = !this.favourite;
+    console.log('user', this.favouriteUserList, 'demo', this.favouriteDemoList);
+    if (this.demo) {
+      this.favouriteDemoList = JSON.parse(localStorage.getItem('favouriteDemoList'));
+      this.favouriteDemo = true;
+      this.demo = false;
+    } else if (this.user) {
+      this.favouriteDemoList = JSON.parse(localStorage.getItem('favouriteDemoList'));
+      this.favouriteUser = true;
+      this.user = false;
+    } else {
+      this.favouriteUser = false;
+      this.favouriteDemo = false;
+    }
   };
-  changed(value) {
+  updateDemoFavouriteList(value) {
     console.log(`Child changed!`, value);
     this.favouriteDemoList = value;
+  }
+  updateUserFavouriteList(value) {
+    console.log(`Child changed!`, value);
+    this.favouriteUserList = value;
   }
 
     ngOnInit() {
     this.videoId = '';
     this.icons = true;
-    this.favourite = false;
+    this.favouriteDemo = false;
+    this.favouriteUser = false;
+    this.demoList = demoList;
     this.userLibrary = localStorage.userLibrary ? JSON.parse(localStorage.getItem('userLibrary')) : [];
     this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
     this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];

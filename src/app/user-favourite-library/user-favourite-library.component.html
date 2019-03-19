@@ -1,4 +1,4 @@
-<div class="main_panel__video_library_sub" *ngIf="icons; else listBlock">
+ <div class="main_panel__video_library_sub" *ngIf="icons; else listBlock">
 
   <div class="main_panel__video_library_icons_container">
     <mat-card *ngFor="let demoVideo of activePage">
@@ -9,18 +9,18 @@
           <span>{{demoVideo.views}}</span> views <br><span>{{demoVideo.likes}}</span> likes
         </p>
         <p>{{demoVideo.addingDate}}</p>
-      </mat-card-content>
-      <button mat-icon-button class="fav" (click)="favourite(demoVideo, $event)">
-        <i class="fas fa-heart"> </i>
-      </button>
-      <button mat-icon-button class="remove" (click)="remove(demoVideo, $event)">
-        <i class="fas fa-trash"></i>
-      </button>
-      <button mat-icon-button class="play" (click)="openDialog(demoVideo)">
-        <i class="fas fa-play"></i>
-      </button>
-    </mat-card>
-  </div>
+        </mat-card-content>
+        <button mat-icon-button class="fav liked" (click)="favourite(demoVideo, $event)">
+          <i class="fas fa-heart"> </i>
+        </button>
+        <button mat-icon-button class="remove" (click)="remove(demoVideo, $event)">
+          <i class="fas fa-trash"></i>
+        </button>
+        <button mat-icon-button class="play" (click)="openDialog(demoVideo)">
+          <i class="fas fa-play"></i>
+        </button>
+      </mat-card>
+    </div>
 
   <mat-paginator [length]="length"
                  [pageSize]="pageSize"
@@ -36,14 +36,14 @@
         <img matListAvatar src={{demoVideo.imgUrl}} (click)="openDialog(demoVideo)">
         <p mat-line>{{demoVideo.title}}</p>
         <!--<p mat-line>{{demoVideo.views}} views | {{demoVideo.likes}} likes</p>-->
-        <button class="action remove" (click)="remove(demoVideo, $event)">
+        <button mat-icon-button class="fav liked" (click)="favourite(demoVideo, $event)">
+          <i class="fas fa-heart"> </i>
+        </button>
+        <button mat-icon-button class="remove" (click)="remove(demoVideo, $event)">
           <i class="fas fa-trash"></i>
         </button>
-        <button class="action play" (click)="openDialog(demoVideo)">
+        <button mat-icon-button class="play" (click)="openDialog(demoVideo)">
           <i class="fas fa-play"></i>
-        </button>
-        <button class="action fav" (click)="favourite(demoVideo, $event)">
-          <i class="fas fa-heart"> </i>
         </button>
       </mat-list-item>
     </mat-list>

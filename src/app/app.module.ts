@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTableModule} from '@angular/material';
+import { UserFavouriteLibraryComponent } from './user-favourite-library/user-favourite-library.component';
+import { DemoFavouriteLibraryComponent } from './demo-favourite-library/demo-favourite-library.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { MatDialogModule, MatInputModule, MatPaginatorModule, MatSelectModule, M
     DemoLibraryComponent,
     UserLibraryComponent,
     PaginationComponent,
+    UserFavouriteLibraryComponent,
+    DemoFavouriteLibraryComponent,
   ],
   imports: [
     BrowserModule,

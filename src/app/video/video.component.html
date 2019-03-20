@@ -35,10 +35,10 @@
   </div>
 
 
-  <app-demo-library class="main_panel__video_library" *ngIf="demo" [demoList]="this.demoList" [icons]="this.icons" (onProp)="updateDemoFavouriteList($event)"></app-demo-library>
+  <app-demo-library class="main_panel__video_library" *ngIf="demo" [demoList]="this.demoList" [icons]="this.icons" ></app-demo-library>
   <app-user-library class="main_panel__video_library" *ngIf="user" [demoList]="this.userLibrary" [icons]="this.icons" (onProp)="updateUserFavouriteList($event)"></app-user-library>
-  <app-user-favourite-library class="main_panel__video_library" *ngIf="favouriteDemo" [demoList]="this.favouriteDemoList" [icons]="this.icons" (onProp)="updateDemoFavouriteList($event)"></app-user-favourite-library>
-  <app-demo-favourite-library class="main_panel__video_library" *ngIf="favouriteUser" [demoList]="this.favouriteUserList" [icons]="this.icons" (onProp)="updateUserFavouriteList($event)"></app-demo-favourite-library>
+  <app-demo-favourite-library class="main_panel__video_library" *ngIf="favouriteDemo" [demoList]="this.favouriteDemoList" [favouriteDemoList]="this.demoList" [icons]="this.icons" ></app-demo-favourite-library>
+  <app-user-favourite-library class="main_panel__video_library" *ngIf="favouriteUser" [demoList]="this.userLibrary" [favouriteUserList]="this.favouriteUserList"[icons]="this.icons" ></app-user-favourite-library>
 </div>
 
 

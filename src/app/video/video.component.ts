@@ -77,6 +77,8 @@ export class VideoComponent implements OnInit {
     localStorage.setItem('userLibrary', JSON.stringify(this.userLibrary));
   }
   showDemo():void {
+    console.log(this.favouriteDemoList);
+
     this.user = false;
     this.favouriteUser = false;
     this.favouriteDemo = false;
@@ -97,6 +99,8 @@ export class VideoComponent implements OnInit {
     this.icons = true;
   }
   showFavourite() {
+    console.log(this.favouriteDemoList);
+
     console.log('user', this.favouriteUserList, 'demo', this.favouriteDemoList);
     if (this.demo) {
       this.favouriteDemoList = JSON.parse(localStorage.getItem('favouriteDemoList'));
@@ -121,6 +125,7 @@ export class VideoComponent implements OnInit {
   }
 
     ngOnInit() {
+      console.log(this.favouriteDemoList);
     this.videoId = '';
     this.icons = true;
     this.favouriteDemo = false;
@@ -129,5 +134,6 @@ export class VideoComponent implements OnInit {
     this.userLibrary = localStorage.userLibrary ? JSON.parse(localStorage.getItem('userLibrary')) : [];
     this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
     this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
+    console.log(this.favouriteDemoList);
   }
 }

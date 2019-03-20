@@ -12,7 +12,7 @@ export class UserFavouriteLibraryComponent implements OnInit {
   @Input() icons: boolean;
   @Output() onProp = new EventEmitter<string>();
 
-  favouriteUserList;
+  @Input() favouriteUserList;
 
   constructor(public dialog: MatDialog) {}
 
@@ -26,7 +26,7 @@ export class UserFavouriteLibraryComponent implements OnInit {
   ngOnInit(): void {
     this.length = this.demoList.length;
     this.activePage = this.demoList.slice(0,this.pageSize);
-    this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
+    // this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
   }
 
   openDialog(url): void {
@@ -43,7 +43,7 @@ export class UserFavouriteLibraryComponent implements OnInit {
 
   favourite(video, e) {
     const index = this.favouriteUserList.indexOf(video);
-    if (index === -1) {
+    if (index !== -1) {
       this.favouriteUserList.push(video);
       video.favourite = !video.favourite;
     } else {
@@ -52,7 +52,7 @@ export class UserFavouriteLibraryComponent implements OnInit {
     e.target.classList.toggle('liked');
     e.target.classList.toggle('notLiked');
     console.log(this.favouriteUserList);
-    this.onProp.emit(this.favouriteUserList);
+    // this.onProp.emit(this.favouriteUserList);
     localStorage.setItem('favouriteUserList', JSON.stringify(this.favouriteUserList))
   }
 

@@ -8,11 +8,13 @@ import {DialogExampleComponent} from "../dialog-example/dialog-example.component
   styleUrls: ['./demo-favourite-library.component.scss']
 })
 export class DemoFavouriteLibraryComponent implements OnInit {
-  @Input() demoList: Object[];
+  @Input() favouriteDemoList;
+  @Input() demoList;
   @Input() icons: boolean;
   length: number;
-  @Output() onProp = new EventEmitter<string>();
-  favouriteDemoList;
+  // @Output() onProp = new EventEmitter<string>();
+  // favouriteDemoList;
+
   // MatPaginator Inputs
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 20, 50, 100];
@@ -24,7 +26,7 @@ export class DemoFavouriteLibraryComponent implements OnInit {
   ngOnInit(): void {
     this.length = this.demoList.length;
     this.activePage = this.demoList.slice(0,this.pageSize);
-    this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
+    // this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
   }
 
   openDialog(url): void {
@@ -45,12 +47,12 @@ export class DemoFavouriteLibraryComponent implements OnInit {
     if (index === -1) {
       this.favouriteDemoList.push(video);
       video.favourite = !video.favourite;
-    } else {
+    } else if (index != -1) {
       this.favouriteDemoList.splice(index, 1)
     }
     e.target.classList.toggle('liked');
     e.target.classList.toggle('notLiked');
-    this.onProp.emit(this.favouriteDemoList);
+    // this.onProp.emit(this.favouriteDemoList);
     console.log(this.favouriteDemoList);
     localStorage.setItem('favouriteDemoList', JSON.stringify(this.favouriteDemoList))
   }

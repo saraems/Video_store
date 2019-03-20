@@ -46,7 +46,7 @@ export class DemoLibraryComponent implements OnInit {
     if (index === -1) {
       this.favouriteDemoList.push(video);
       video.favourite = !video.favourite;
-    } else {
+    } else if (index != -1) {
       this.favouriteDemoList.splice(index, 1)
     }
     e.target.classList.toggle('liked');

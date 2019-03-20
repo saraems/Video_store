@@ -35,8 +35,8 @@
   </div>
 
 
-  <app-demo-library class="main_panel__video_library" *ngIf="demo" [demoList]="this.demoList" [icons]="this.icons" (onProp)="updateDemoFavouriteList($event)"></app-demo-library>
-  <app-user-library class="main_panel__video_library" *ngIf="user" [demoList]="this.userLibrary" [icons]="this.icons" (onProp)="updateUserFavouriteList($event)"></app-user-library>
+  <app-demo-library class="main_panel__video_library" *ngIf="demo" [demoList]="this.demoList" [favouriteDemoList]="this.favouriteDemoList" [icons]="this.icons"></app-demo-library>
+  <app-user-library class="main_panel__video_library" *ngIf="user" [userLibrary]="this.userLibrary" [favouriteUserList]="this.favouriteUserList" [icons]="this.icons"></app-user-library>
   <app-demo-favourite-library class="main_panel__video_library" *ngIf="favouriteDemo" [favouriteDemoList]="this.favouriteDemoList"  [icons]="this.icons" ></app-demo-favourite-library>
   <app-user-favourite-library class="main_panel__video_library" *ngIf="favouriteUser" [favouriteUserList]="this.favouriteUserList" [icons]="this.icons" ></app-user-favourite-library>
 </div>

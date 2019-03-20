@@ -8,25 +8,24 @@ import {DialogExampleComponent} from "../dialog-example/dialog-example.component
   styleUrls: ['./user-library.component.scss']
 })
 export class UserLibraryComponent implements OnInit {
-  @Input() demoList: Object[];
+  @Input() userLibrary: Object[];
+  @Input() favouriteUserList;
+
   @Input() icons: boolean;
-  @Output() onProp = new EventEmitter<string>();
-
-  favouriteUserList;
-
-  constructor(public dialog: MatDialog) {}
-
   length: number;
+  // @Output() onProp = new EventEmitter<string>();
   // MatPaginator Inputs
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 20, 50, 100];
 
   activePage = [];
 
+  constructor(public dialog: MatDialog) {}
+
   ngOnInit(): void {
-    this.length = this.demoList.length;
-    this.activePage = this.demoList.slice(0,this.pageSize);
-    this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
+    this.length = this.userLibrary.length;
+    this.activePage = this.userLibrary.slice(0,this.pageSize);
+    // this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
   }
 
   openDialog(url): void {
@@ -43,29 +42,31 @@ export class UserLibraryComponent implements OnInit {
 
   favourite(video, e) {
     const index = this.favouriteUserList.indexOf(video);
+    console.log(index, this.favouriteUserList);
     if (index === -1) {
       this.favouriteUserList.push(video);
       video.favourite = !video.favourite;
-    } else {
-      this.favouriteUserList.splice(index, index + 1)
+    } else if (index != -1) {
+      this.favouriteUserList.splice(index, 1)
     }
     e.target.classList.toggle('liked');
     e.target.classList.toggle('notLiked');
+    // this.onProp.emit(this.favouriteUserList);
     console.log(this.favouriteUserList);
-    this.onProp.emit(this.favouriteUserList);
     localStorage.setItem('favouriteUserList', JSON.stringify(this.favouriteUserList))
   }
 
   remove(video, e) {
-    const index = this.favouriteUserList.indexOf(video);
-    this.favouriteUserList.splice(index, 1);
+    const index = this.userLibrary.indexOf(video);
+    this.userLibrary.splice(index, 1);
     e.target.parentElement.remove();
-    console.log(this.demoList);
+    console.log(this.userLibrary);
+    localStorage.setItem('userLibrary', JSON.stringify(this.userLibrary))
   }
 
   onPageChanged(e) {
     let firstCut = e.pageIndex * e.pageSize;
     let secondCut = firstCut + e.pageSize;
-    this.activePage = this.demoList.slice(firstCut, secondCut);
+    this.activePage = this.userLibrary.slice(firstCut, secondCut);
   }
 }

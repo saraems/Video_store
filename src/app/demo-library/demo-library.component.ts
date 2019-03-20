@@ -10,10 +10,11 @@ import { DialogExampleComponent } from "../dialog-example/dialog-example.compone
 })
 export class DemoLibraryComponent implements OnInit {
   @Input() demoList: Object[];
+  @Input() favouriteDemoList;
+
   @Input() icons: boolean;
   length: number;
-  @Output() onProp = new EventEmitter<string>();
-  favouriteDemoList;
+  // @Output() onProp = new EventEmitter<string>();
   // MatPaginator Inputs
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 20, 50, 100];
@@ -25,7 +26,6 @@ export class DemoLibraryComponent implements OnInit {
   ngOnInit(): void {
     this.length = this.demoList.length;
     this.activePage = this.demoList.slice(0,this.pageSize);
-    this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
   }
 
   openDialog(url): void {
@@ -51,7 +51,7 @@ export class DemoLibraryComponent implements OnInit {
     }
     e.target.classList.toggle('liked');
     e.target.classList.toggle('notLiked');
-    this.onProp.emit(this.favouriteDemoList);
+    // this.onProp.emit(this.favouriteDemoList);
     console.log(this.favouriteDemoList);
     localStorage.setItem('favouriteDemoList', JSON.stringify(this.favouriteDemoList))
   }

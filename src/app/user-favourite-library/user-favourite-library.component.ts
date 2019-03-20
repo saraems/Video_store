@@ -8,11 +8,9 @@ import {DialogExampleComponent} from "../dialog-example/dialog-example.component
   styleUrls: ['./user-favourite-library.component.scss']
 })
 export class UserFavouriteLibraryComponent implements OnInit {
-  @Input() demoList: Object[];
+  @Input() favouriteUserList;
   @Input() icons: boolean;
   @Output() onProp = new EventEmitter<string>();
-
-  @Input() favouriteUserList;
 
   constructor(public dialog: MatDialog) {}
 
@@ -24,9 +22,8 @@ export class UserFavouriteLibraryComponent implements OnInit {
   activePage = [];
 
   ngOnInit(): void {
-    this.length = this.demoList.length;
-    this.activePage = this.demoList.slice(0,this.pageSize);
-    // this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
+    this.length = this.favouriteUserList.length;
+    this.activePage = this.favouriteUserList.slice(0,this.pageSize);
   }
 
   openDialog(url): void {
@@ -43,16 +40,16 @@ export class UserFavouriteLibraryComponent implements OnInit {
 
   favourite(video, e) {
     const index = this.favouriteUserList.indexOf(video);
-    if (index !== -1) {
+    console.log(index, this.favouriteUserList);
+    if (index === -1) {
       this.favouriteUserList.push(video);
       video.favourite = !video.favourite;
-    } else {
+    } else if (index != -1) {
       this.favouriteUserList.splice(index, 1)
     }
     e.target.classList.toggle('liked');
     e.target.classList.toggle('notLiked');
     console.log(this.favouriteUserList);
-    // this.onProp.emit(this.favouriteUserList);
     localStorage.setItem('favouriteUserList', JSON.stringify(this.favouriteUserList))
   }
 
@@ -60,13 +57,12 @@ export class UserFavouriteLibraryComponent implements OnInit {
     const index = this.favouriteUserList.indexOf(video);
     this.favouriteUserList.splice(index, 1);
     e.target.parentElement.remove();
-    console.log(this.demoList);
+    console.log(this.favouriteUserList);
   }
-
 
   onPageChanged(e) {
     let firstCut = e.pageIndex * e.pageSize;
     let secondCut = firstCut + e.pageSize;
-    this.activePage = this.demoList.slice(firstCut, secondCut);
+    this.activePage = this.favouriteUserList.slice(firstCut, secondCut);
   }
 }

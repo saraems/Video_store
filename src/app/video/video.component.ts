@@ -103,11 +103,11 @@ export class VideoComponent implements OnInit {
 
     console.log('user', this.favouriteUserList, 'demo', this.favouriteDemoList);
     if (this.demo) {
-      this.favouriteDemoList = JSON.parse(localStorage.getItem('favouriteDemoList'));
+      // this.favouriteDemoList = JSON.parse(localStorage.getItem('favouriteDemoList'));
       this.favouriteDemo = true;
       this.demo = false;
     } else if (this.user) {
-      this.favouriteDemoList = JSON.parse(localStorage.getItem('favouriteDemoList'));
+      // this.favouriteUserList = JSON.parse(localStorage.getItem('favouriteUserList'));
       this.favouriteUser = true;
       this.user = false;
     } else {

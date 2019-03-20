@@ -8,13 +8,10 @@ import {DialogExampleComponent} from "../dialog-example/dialog-example.component
   styleUrls: ['./demo-favourite-library.component.scss']
 })
 export class DemoFavouriteLibraryComponent implements OnInit {
-  @Input() favouriteDemoList;
-  @Input() demoList;
+  @Input() favouriteDemoList; // fav
+  // @Input() demoList; //demo
   @Input() icons: boolean;
   length: number;
-  //some silly comment
-  // @Output() onProp = new EventEmitter<string>();
-  // favouriteDemoList;
 
   // MatPaginator Inputs
   pageSize = 10;
@@ -25,9 +22,8 @@ export class DemoFavouriteLibraryComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.length = this.demoList.length;
-    this.activePage = this.demoList.slice(0,this.pageSize);
-    // this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
+    this.length = this.favouriteDemoList.length;
+    this.activePage = this.favouriteDemoList.slice(0,this.pageSize);
   }
 
   openDialog(url): void {
@@ -53,7 +49,6 @@ export class DemoFavouriteLibraryComponent implements OnInit {
     }
     e.target.classList.toggle('liked');
     e.target.classList.toggle('notLiked');
-    // this.onProp.emit(this.favouriteDemoList);
     console.log(this.favouriteDemoList);
     localStorage.setItem('favouriteDemoList', JSON.stringify(this.favouriteDemoList))
   }
@@ -61,14 +56,12 @@ export class DemoFavouriteLibraryComponent implements OnInit {
   remove(video, e) {
     const index = this.favouriteDemoList.indexOf(video);
     this.favouriteDemoList.splice(index, 1);
-    this.demoList.splice(index, 1);
     e.target.parentElement.remove();
   }
-
 
   onPageChanged(e) {
     let firstCut = e.pageIndex * e.pageSize;
     let secondCut = firstCut + e.pageSize;
-    this.activePage = this.demoList.slice(firstCut, secondCut);
+    this.activePage = this.favouriteDemoList.slice(firstCut, secondCut);
   }
 }

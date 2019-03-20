@@ -12,6 +12,7 @@ export class DemoFavouriteLibraryComponent implements OnInit {
   @Input() demoList;
   @Input() icons: boolean;
   length: number;
+  //some silly comment
   // @Output() onProp = new EventEmitter<string>();
   // favouriteDemoList;
 

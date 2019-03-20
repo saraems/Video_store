@@ -51,7 +51,6 @@ export class DemoLibraryComponent implements OnInit {
     }
     e.target.classList.toggle('liked');
     e.target.classList.toggle('notLiked');
-    // this.onProp.emit(this.favouriteDemoList);
     console.log(this.favouriteDemoList);
     localStorage.setItem('favouriteDemoList', JSON.stringify(this.favouriteDemoList))
   }

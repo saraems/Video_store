@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MatDialog, MatDialogConfig} from "@angular/material";
-import {DialogExampleComponent} from "../dialog-example/dialog-example.component";
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from "@angular/material";
+import { DialogExampleComponent } from "../dialog-example/dialog-example.component";
 
 @Component({
   selector: 'app-demo-favourite-library',

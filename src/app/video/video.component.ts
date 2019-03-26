@@ -13,7 +13,6 @@ export class VideoComponent implements OnInit {
 
   video: any;
   videoId: string;
-  fullUrl: string;
   imagePath: string;
   private error: any;
   demo: boolean;
@@ -28,22 +27,10 @@ export class VideoComponent implements OnInit {
 
   constructor(private dataService: DataService) {}
 
-  createUrl(videoId: string) {
-    const apiUrl = `https://www.googleapis.com/youtube/v3/`;
-    const userKey = `&key=AIzaSyBcMNQVkmuIp8vI5QXDXQWef_AhV_zP5Yk`;
-    const youtubeRequestScope = 'videos?&fields=items(id,snippet(title,thumbnails),statistics)&part=snippet,statistics';
-    let videoKey;
-    videoId.length > 12 ? (videoKey = '&id=' + videoId.replace('https://www.youtube.com/watch?v=', '')) : (videoKey = `&id=${videoId}`);
+  findVideo(videoId: string) {
 
-    const fullUrl = (apiUrl + youtubeRequestScope + videoKey + userKey);
-    console.log(fullUrl);
-    this.fullUrl = fullUrl;
-  }
-
-  async findVideo(videoId: string) {
-    if (videoId) {
-      await this.createUrl(videoId);
-      return this.dataService.getVideo(this.fullUrl)
+    if (videoId && (this.videoId.includes('youtube') || this.videoId.length === 11)) {
+      return this.dataService.getVideo(DataService.createYoutubeUrlRequest(videoId), DataService.httpOptions())
         .subscribe((data: youtubeResponse) => {
           this.video = data;
           this.imagePath = this.video.items[0].snippet.thumbnails.high.url;
@@ -51,6 +38,14 @@ export class VideoComponent implements OnInit {
         },
           error => this.error = error
         );
+    } else if (videoId && (this.videoId.includes('vimeo') || this.videoId.length <= 9)) {
+      return this.dataService.getVideo(DataService.createVimeoUrlRequest(videoId), DataService.httpOptions())
+        .subscribe((data: youtubeResponse) => {
+            this.video = data;
+            console.log(this.video);
+            this.imagePath = this.video.pictures.sizes[4].link;
+            this.videoId = '';
+          })
     }
   }
   static getTodayDate() {
@@ -60,18 +55,33 @@ export class VideoComponent implements OnInit {
     const yyyy = today.getFullYear();
     return dd + '/' + mm + '/' + yyyy;
   }
+
   addToMyLibrary(): void {
+
     const videoLibraryTemplate = {
       filmId: 1,
-      externalFilmId: this.video.items[0].id,
-      title: this.video.items[0].snippet.title,
-      views: this.video.items[0].statistics.viewCount,
-      likes: this.video.items[0].statistics.likeCount,
-      imgUrl: this.video.items[0].snippet.thumbnails.high.url,
-      videoUrl: 'https://www.youtube.com/embed/' + this.video.items[0].id,
+      externalFilmId: 'x',
+      title: this.video.name,
+      views: this.video.stats.plays,
+      likes: this.video.metadata.connections.likes.total,
+      imgUrl: this.video.pictures.sizes[4].link,
+      videoUrl: this.video.link,
       favourite: false,
       addingDate: VideoComponent.getTodayDate()
-  };
+    };
+
+console.log(videoLibraryTemplate);
+  //   const videoLibraryTemplate = {
+  //     filmId: 1,
+  //     externalFilmId: this.video.items[0].id,
+  //     title: this.video.items[0].snippet.title,
+  //     views: this.video.items[0].statistics.viewCount,
+  //     likes: this.video.items[0].statistics.likeCount,
+  //     imgUrl: this.video.items[0].snippet.thumbnails.high.url,
+  //     videoUrl: 'https://www.youtube.com/embed/' + this.video.items[0].id,
+  //     favourite: false,
+  //     addingDate: VideoComponent.getTodayDate()
+  // };
     this.userLibrary.push(videoLibraryTemplate);
     console.log(this.userLibrary);
     localStorage.setItem('userLibrary', JSON.stringify(this.userLibrary));
@@ -115,17 +125,16 @@ export class VideoComponent implements OnInit {
       this.favouriteDemo = false;
     }
   };
-  updateDemoFavouriteList(value) {
-    console.log(`Child changed!`, value);
-    this.favouriteDemoList = value;
-  }
-  updateUserFavouriteList(value) {
-    console.log(`Child changed!`, value);
-    this.favouriteUserList = value;
-  }
+  // updateDemoFavouriteList(value) {
+  //   console.log(`Child changed!`, value);
+  //   this.favouriteDemoList = value;
+  // }
+  // updateUserFavouriteList(value) {
+  //   console.log(`Child changed!`, value);
+  //   this.favouriteUserList = value;
+  // }
 
     ngOnInit() {
-      console.log(this.favouriteDemoList);
     this.videoId = '';
     this.icons = true;
     this.favouriteDemo = false;
@@ -134,6 +143,5 @@ export class VideoComponent implements OnInit {
     this.userLibrary = localStorage.userLibrary ? JSON.parse(localStorage.getItem('userLibrary')) : [];
     this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
     this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
-    console.log(this.favouriteDemoList);
   }
 }

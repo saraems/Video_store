@@ -2,15 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { VideoComponent } from './video/video.component';
-import { DialogExampleComponent } from './dialog-example/dialog-example.component';
-import { DemoLibraryComponent } from './demo-library/demo-library.component';
-import { UserLibraryComponent } from './user-library/user-library.component';
-import { PaginationComponent } from './pagination/pagination.component';
+import { VideoSearchComponent } from './video-search/video-search.component';
+import { VideoDialogComponent } from './video-dialog/video-dialog.component';
+import { LibraryComponent } from './library/library.component';
 
 
 import { MatCardModule } from '@angular/material/card';
@@ -18,20 +16,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTableModule} from '@angular/material';
-import { UserFavouriteLibraryComponent } from './user-favourite-library/user-favourite-library.component';
-import { DemoFavouriteLibraryComponent } from './demo-favourite-library/demo-favourite-library.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    VideoComponent,
-    DialogExampleComponent,
-    DemoLibraryComponent,
-    UserLibraryComponent,
-    PaginationComponent,
-    UserFavouriteLibraryComponent,
-    DemoFavouriteLibraryComponent,
+    VideoSearchComponent,
+    VideoDialogComponent,
+    LibraryComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +41,7 @@ import { DemoFavouriteLibraryComponent } from './demo-favourite-library/demo-fav
     MatSelectModule,
     MatInputModule
   ],
-  entryComponents: [DialogExampleComponent],
+  entryComponents: [VideoDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

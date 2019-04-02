@@ -17,7 +17,7 @@ export class VideoSearchComponent implements OnInit {
   videoKey: string;
 
   videoRawData: any;
-  video: object;
+  video;
 
   private error: any;
 
@@ -29,10 +29,10 @@ export class VideoSearchComponent implements OnInit {
   favouriteUser: boolean;
 
   demoList: object[] = demoList;
-  favouriteDemoList: object[];
+  favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
 
   userLibrary;
-  favouriteUserList: object[];
+  favouriteUserList;
 
   constructor(private dataService: DataService) {}
 
@@ -45,10 +45,11 @@ export class VideoSearchComponent implements OnInit {
     this.userLibrary = localStorage.userLibrary ? JSON.parse(localStorage.getItem('userLibrary')) : [];
     this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
     this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
+    console.log(this.favouriteDemoList, this.demoList);
   }
 
   createVideoId() {
-    return this.userLibrary === [] ? 1 : this.userLibrary[this.userLibrary.len - 1].videoId + 1
+    return this.userLibrary ? this.userLibrary[this.userLibrary.len - 1].videoId + 1 : 1;
   }
 
   findVideo(videoInput: string) {
@@ -78,18 +79,15 @@ export class VideoSearchComponent implements OnInit {
     }
   }
 
-  addToMyLibrary(): void {
-    console.log(this.video);
-    // this.video.videoId = this.createVideoId();
-    this.userLibrary.push(this.video);
+  addToMyLibrary(video): void {
+    // console.log(this.video);
+    // video.videoId = this.createVideoId();
+    this.userLibrary.push(video);
     console.log(this.userLibrary);
     localStorage.setItem('userLibrary', JSON.stringify(this.userLibrary));
   }
 
   showDemo():void {
-    console.log(this.favouriteDemoList);
-
-    this.user = false;
     this.favouriteUser = false;
     this.favouriteDemo = false;
     this.demo = !this.demo;

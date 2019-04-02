@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChange} from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { VideoDialogComponent } from "../video-dialog/video-dialog.component";
+import {SimpleChanges} from "@angular/core/src/metadata/lifecycle_hooks";
+import {log} from "util";
 
 
 @Component({
@@ -8,9 +10,9 @@ import { VideoDialogComponent } from "../video-dialog/video-dialog.component";
   templateUrl: './library.component.html',
   styleUrls: ['./library.component.scss']
 })
-export class LibraryComponent implements OnInit {
-  @Input() videoList: Object[];
-  @Input() favouriteVideoList: Object[];
+export class LibraryComponent implements OnInit{
+  @Input() videoList;
+  @Input() favouriteVideoList;
   @Input() videoListName: string;
   @Input() favouriteListName: string;
   @Input() icons: boolean;
@@ -40,26 +42,58 @@ export class LibraryComponent implements OnInit {
   }
 
   favourite(video, e) {
-    console.log(video, video.favourite);
-    const index = this.favouriteVideoList.indexOf(video);
-    video.favourite = !video.favourite;
-    console.log(video.favourite);
+
+    let index = this.favouriteVideoList.indexOf(video);
+
+    console.log(this.favouriteVideoList, video, index);
+    // console.log(JSON.parse(localStorage.getItem('favouriteDemoList')));
+    // video.favourite = !video.favourite;
+    // this.favouriteVideoList = this.videoList.filter((item) => item.favourite === true);
+
+
     if (index === -1) {
-      this.favouriteVideoList.push(video);
-    } else if (index != -1) {
-      this.favouriteVideoList.splice(index, 1)
+      video.favourite = true;
+      this.favouriteVideoList.push(video)
+
+    } else if (index !== -1) {
+      video.favourite = false;
+      this.favouriteVideoList.splice(index, 1);
+
+        if(this.videoListName.includes('favourite')) {
+            e.target.parentElement.parentElement.parentElement.remove();
+        }
     }
-    // e.target.classList.toggle('liked');
-    // e.target.classList.toggle('notLiked');
+    index = this.favouriteVideoList.indexOf(video);
+
+    // const index = this.favouriteVideoList.indexOf(video);
+    // // console.log(video, this.favouriteVideoList, index);
+    // video.favourite = !video.favourite;
+    //
+    // if (index === -1) {
+    //   this.favouriteVideoList.push(video);
+    // } else if (index != -1) {
+    //   this.favouriteVideoList.splice(index, 1);
+    //   this.videoList[index].favourite === false;
+    //   // e.target.parentElement.parentElement.parentElement.remove();
+    // }
+    // console.log(video, this.favouriteVideoList, index);
+    //
+    // // this.favouriteVideoList = this.favouriteVideoList.filter((item) => item.favourite === true);
+    // // console.log(video, this.favouriteVideoList, index);
+    //
     localStorage.setItem(this.favouriteListName, JSON.stringify(this.favouriteVideoList));
     localStorage.setItem(this.videoListName, JSON.stringify(this.videoList));
+    // console.log(JSON.parse(localStorage.getItem('favouriteDemoList')));
+    console.log(this.favouriteVideoList, video, index);
+
+
+
   }
 
   remove(video, e) {
     const index = this.videoList.indexOf(video);
     this.videoList.splice(index, 1);
     this.activePage.splice(index, 1);
-    console.log(video, this.videoList);
     e.target.parentElement.parentElement.parentElement.remove();
     localStorage.setItem(this.videoListName, JSON.stringify(this.videoList));
   }

@@ -20,7 +20,7 @@
     </div>
 
     <span class="video_title"> {{ this.video.title }} </span>
-    <button mat-fab color="primary" class="add_video" (click)="addToMyLibrary()">+</button>
+    <button mat-fab color="primary" class="add_video" (click)="addToMyLibrary(this.video)">+</button>
     <button class="close" (click)="this.video = ''"><i class="far fa-window-close"></i></button>
   </div>
 
@@ -37,8 +37,8 @@
   <app-library class="main_panel__video_library" *ngIf="demo" [videoList]="this.demoList" [favouriteVideoList]="this.favouriteDemoList" [icons]="this.icons" [favouriteListName]="'favouriteDemoList'" [videoListName]="'demoList'"></app-library>
   <app-library class="main_panel__video_library" *ngIf="user" [videoList]="this.userLibrary" [favouriteVideoList]="this.favouriteUserList" [icons]="this.icons" [favouriteListName]="'favouriteUserList'" [videoListName]="'userLibrary'"></app-library>
 
-  <app-library class="main_panel__video_library" *ngIf="favouriteDemo" [videoList]="this.favouriteDemoList" [favouriteVideoList]="this.favouriteDemoList" [icons]="this.icons" [favouriteListName]="'favouriteDemoList'"></app-library>
-  <app-library class="main_panel__video_library" *ngIf="favouriteUser" [videoList]="this.favouriteUserList" [favouriteVideoList]="this.favouriteUserList" [icons]="this.icons" [favouriteListName]="'favouriteUserList'"></app-library>
+  <app-library class="main_panel__video_library" *ngIf="favouriteDemo" [videoList]="this.favouriteDemoList" [favouriteVideoList]="this.favouriteDemoList" [icons]="this.icons" [favouriteListName]="'favouriteDemoList'" [videoListName]="'favouriteDemoList'"></app-library>
+  <app-library class="main_panel__video_library" *ngIf="favouriteUser" [videoList]="this.favouriteUserList" [favouriteVideoList]="this.favouriteUserList" [icons]="this.icons" [favouriteListName]="'favouriteUserList'" [videoListName]="'favouriteUserList'"></app-library>
 
 
 </div>

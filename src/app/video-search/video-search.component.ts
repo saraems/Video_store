@@ -30,7 +30,7 @@ export class VideoSearchComponent implements OnInit {
   favouriteUser: boolean;
 
   demoList = demoList;
-  favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
+  favouriteDemoList;
 
   userLibrary;
   favouriteUserList;

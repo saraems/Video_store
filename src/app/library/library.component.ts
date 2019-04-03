@@ -64,6 +64,7 @@ export class LibraryComponent implements OnInit {
     }
 
     localStorage.setItem(this.videoListName, JSON.stringify(this.videoList));
+    localStorage.setItem(this.favouriteListName, JSON.stringify(this.favouriteVideoList));
     console.log(this.favouriteVideoList, video, index, includedInFavourite);
   }
 

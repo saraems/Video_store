@@ -48,10 +48,6 @@ export class LibraryComponent implements OnInit {
     let includedInFavourite = this.favouriteVideoList.includes(video);
 
     console.log(this.favouriteVideoList, video, index, includedInFavourite);
-    console.log(JSON.parse(localStorage.getItem('favouriteDemoList')));
-    // video.favourite = !video.favourite;
-    // this.favouriteVideoList = this.videoList.filter((item) => item.favourite === true);
-
 
     if (index === -1) {
       video.favourite = true;
@@ -62,31 +58,32 @@ export class LibraryComponent implements OnInit {
       this.favouriteVideoList.splice(index, 1);
 
         if(this.videoListName.includes('favourite')) {
-            this.onInput(index);
+            this.onFavourite(index);
             e.target.parentElement.parentElement.parentElement.remove();
         }
     }
-    index = this.favouriteVideoList.indexOf(video);
-    includedInFavourite = this.favouriteVideoList.includes(video);
 
-
-    localStorage.setItem(this.favouriteListName, JSON.stringify(this.favouriteVideoList));
     localStorage.setItem(this.videoListName, JSON.stringify(this.videoList));
-    // console.log(video, this.favouriteVideoList, index);
-    // console.log(JSON.parse(localStorage.getItem('favouriteDemoList')));
     console.log(this.favouriteVideoList, video, index, includedInFavourite);
   }
 
   remove(video, e) {
-    const index = this.videoList.indexOf(video);
-    this.videoList.splice(index, 1);
-    this.activePage.splice(index, 1);
+    const indexVideoList = this.videoList.indexOf(video);
+    const indexFavourite = this.favouriteVideoList.indexOf(video);
+
+    if(video.favourite) {
+      this.onFavourite(indexVideoList);
+      this.favouriteVideoList.splice(indexFavourite, 1);
+    }
+
+    this.videoList.splice(indexVideoList, 1);
+    this.activePage.splice(indexVideoList, 1);
     e.target.parentElement.parentElement.parentElement.remove();
     localStorage.setItem(this.videoListName, JSON.stringify(this.videoList));
   }
 
-  onInput(value) {
-    this.onProp.emit(value);
+  onFavourite(index) {
+    this.onProp.emit(index);
   }
 
   onPageChanged(e) {

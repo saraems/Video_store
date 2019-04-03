@@ -45,8 +45,7 @@ export class VideoSearchComponent implements OnInit {
     this.demoList = localStorage.demoList ?  JSON.parse(localStorage.getItem('demoList')) : demoList;
     this.userLibrary = localStorage.userLibrary ? JSON.parse(localStorage.getItem('userLibrary')) : [];
     this.favouriteDemoList = localStorage.favouriteDemoList ? this.demoList.filter(item => item.favourite) : [];
-    this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
-    console.log(this.favouriteDemoList, this.demoList);
+    this.favouriteUserList = localStorage.favouriteUserList ? this.userLibrary.filter(item => item.favourite) : [];
   }
 
   createVideoId() {
@@ -89,12 +88,12 @@ export class VideoSearchComponent implements OnInit {
   }
 
   showDemo():void {
+    this.user = false;
     this.favouriteUser = false;
     this.favouriteDemo = false;
     this.demo = !this.demo;
   }
   showUser():void {
-    // this.userLibrary = JSON.parse(localStorage.getItem('userLibrary'));
     this.demo = false;
     this.favouriteUser = false;
     this.favouriteDemo = false;
@@ -120,11 +119,10 @@ export class VideoSearchComponent implements OnInit {
     }
   };
 
-  changed(index) {
+  changed(index, videoList, videoListName) {
     index = parseInt(index);
     console.log(`Child changed!`, index);
-    this.demoList[index].favourite = false;
-    localStorage.setItem('demoList', JSON.stringify(this.demoList));
-
+    videoList[index].favourite = false;
+    localStorage.setItem(videoListName, JSON.stringify(videoList));
   }
 }

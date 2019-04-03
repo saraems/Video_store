@@ -95,11 +95,11 @@ THE SOFTWARE.
 
 @angular/material/form-field
 
-@angular/material/list
-
 @angular/material/paginator
 
 @angular/material/select
+
+@angular/material/sort
 
 @angular/material/tooltip
 

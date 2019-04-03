@@ -3,7 +3,6 @@ import {DataService} from '../data.service';
 import { demoList } from '../demo-videos-list';
 import {youtubeResponse} from "../youtube-response";
 import { Video } from '../video'
-import {toNumbers} from "@angular/compiler-cli/src/diagnostics/typescript_version";
 
 
 @Component({
@@ -49,7 +48,7 @@ export class VideoSearchComponent implements OnInit {
   }
 
   createVideoId() {
-    return this.userLibrary ? this.userLibrary[this.userLibrary.len - 1].videoId + 1 : 1;
+    return this.userLibrary ? this.userLibrary[this.userLibrary.length] : 1;
   }
 
   findVideo(videoInput: string) {
@@ -62,7 +61,7 @@ export class VideoSearchComponent implements OnInit {
         .subscribe((data: youtubeResponse) => {
           this.videoRawData = data;
             console.log(this.videoRawData);
-          this.video = new Video(0, this.videoRawData.items[0].id, this.videoRawData.items[0].snippet.title, this.videoRawData.items[0].statistics.viewCount, this.videoRawData.items[0].statistics.likeCount, this.videoRawData.items[0].snippet.thumbnails.high.url, `https://www.youtube.com/embed/${this.videoRawData.items[0].id}`, false);
+          this.video = new Video(0, this.videoRawData.items[0].id, this.videoRawData.items[0].snippet.title, parseInt(this.videoRawData.items[0].statistics.viewCount), parseInt(this.videoRawData.items[0].statistics.likeCount), this.videoRawData.items[0].snippet.thumbnails.high.url, `https://www.youtube.com/embed/${this.videoRawData.items[0].id}`, false);
           this.videoInput = '';
         },
           error => this.error = error
@@ -72,7 +71,7 @@ export class VideoSearchComponent implements OnInit {
         .subscribe((data: youtubeResponse) => {
           this.videoRawData = data;
           console.log(this.videoRawData);
-          this.video = new Video(0, this.videoKey, this.videoRawData.name, this.videoRawData.stats.plays, this.videoRawData.metadata.connections.likes.total, this.videoRawData.pictures.sizes[3].link, `https://player.vimeo.com/video/${this.videoKey}`, false);
+          this.video = new Video(0, this.videoKey, this.videoRawData.name, parseInt(this.videoRawData.stats.plays), parseInt(this.videoRawData.metadata.connections.likes.total), this.videoRawData.pictures.sizes[3].link, `https://player.vimeo.com/video/${this.videoKey}`, false);
           this.videoInput = '';
         }
       )

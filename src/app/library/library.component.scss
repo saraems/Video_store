@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .main_panel__video_library_icons_container {
@@ -105,63 +106,86 @@ mat-card {
   }
 }
 
-.mat-list-item {
-  font-size: 12px;
+//LIST
+
+.matSort {
+  width: 90%;
+}
+
+tr {
+  padding: 5px;
+  box-sizing: border-box;
+
+  td, th {
+    height: 100%;
+    padding: 10px 5px 10px 5px;
+    box-sizing: border-box;
+
+    .mat-icon-button {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      line-height: 30px;
+      border-radius: 50%;
+      color: lightgray;
+    }
+
+    button {
+
+      &.remove:hover {
+        color: cadetblue;
+      }
+
+      &.play {
+        &:hover {
+          color: yellow;
+        }
+      }
+
+      &.notLiked {
+        color: lightgray;
+        &:hover {
+          color: crimson;
+        }
+      }
+
+      &.liked {
+        color: crimson;
+        &:hover {
+          color: lightgray;
+        }
+      }
+    }
+  }
+
   &:hover {
     background-color: whitesmoke;
   }
-
-  button {
-    font-size: 14px;
-    cursor: pointer;
-    padding: 5px;
-    color: lightgray;
-    background: transparent;
-    border: none;
-    outline: none;
-    transition: 0.1s ease-in;
-
-
-    &.remove:hover {
-      color: cadetblue;
-      cursor: pointer;
-    }
-
-    &.play:hover {
-      color: yellow;
-      cursor: pointer;
-    }
-
-    &.liked {
-      color: crimson;
-      &:hover {
-        color: lightgray;
-      }
-    }
-
-    &.notLiked {
-      color: lightgray;
-      &:hover {
-        color: crimson;
-      }
-    }
-  }
 }
 
-.matListAvatar {
+.video_title {
+  width: 40%;
+}
+
+img.video_thumbnail {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: fill;
+  margin: 0 15px 0 15px;
   cursor: pointer;
 }
 
-
 #listBlock {
-  .mat-paginator {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
 }
 
-.mat-list {
-  width: 90%;
+.mat-paginator {
+  margin-top: 15px;
 }

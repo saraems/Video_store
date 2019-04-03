@@ -30,23 +30,54 @@
   </div>
 
     <ng-template #listBlock class="main_panel__video_library_sub">
-      <div class="main_panel__video_library_icons_container">
-        <mat-list>
-          <mat-list-item *ngFor="let video of activePage">
-            <img matListAvatar src={{video.imgUrl}} (click)="openDialog(video)">
-            <p mat-line>{{video.title}}</p>
-            <button class="action remove" (click)="remove(video, $event)">
+
+      <table matSort (matSortChange)="sortData($event)">
+        <tr>
+          <th>img</th>
+          <th mat-sort-header="title" class="video_title">Video title</th>
+          <th mat-sort-header="likes">Likes</th>
+          <th mat-sort-header="views">Views</th>
+          <th mat-sort-header="addingDate">Added</th>
+          <th>Actions</th>
+        </tr>
+
+        <tr *ngFor="let video of sortedData">
+          <td class="non_sorted"><img class="video_thumbnail" src={{video.imgUrl}} (click)="openDialog(video)"></td>
+          <td class="video_title">{{video.title}}</td>
+          <td>{{video.likes}}</td>
+          <td>{{video.views}}</td>
+          <td>{{video.addingDate}}</td>
+          <td class="non_sorted">
+            <button mat-icon-button class="remove" (click)="remove(video, $event)">
               <i class="fas fa-trash"></i>
             </button>
-            <button class="action play" (click)="openDialog(video)">
+            <button mat-icon-button class="play" (click)="openDialog(video)">
               <i class="fas fa-play"></i>
             </button>
-            <button class="action fav notLiked" [ngClass]="video.favourite ? 'liked' : 'notliked'" (click)="favourite(video, $event)">
+            <button mat-icon-button [ngClass]="video.favourite ? 'liked' : 'notLiked'" (click)="favourite(video, $event)">
               <i class="fas fa-heart"> </i>
             </button>
-          </mat-list-item>
-        </mat-list>
-      </div>
+          </td>
+        </tr>
+      </table>
+
+<!--      <div class="main_panel__video_library_icons_container">-->
+<!--        <mat-list>-->
+<!--          <mat-list-item *ngFor="let video of activePage">-->
+<!--            <img matListAvatar src={{video.imgUrl}} (click)="openDialog(video)">-->
+<!--            <p mat-line>{{video.title}}</p>-->
+<!--            <button class="action remove" (click)="remove(video, $event)">-->
+<!--              <i class="fas fa-trash"></i>-->
+<!--            </button>-->
+<!--            <button class="action play" (click)="openDialog(video)">-->
+<!--              <i class="fas fa-play"></i>-->
+<!--            </button>-->
+<!--            <button class="action fav notLiked" [ngClass]="video.favourite ? 'liked' : 'notliked'" (click)="favourite(video, $event)">-->
+<!--              <i class="fas fa-heart"> </i>-->
+<!--            </button>-->
+<!--          </mat-list-item>-->
+<!--        </mat-list>-->
+<!--      </div>-->
 
       <mat-paginator [length]="length"
                      [pageSize]="pageSize"

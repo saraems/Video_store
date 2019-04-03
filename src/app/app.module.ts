@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTableModule} from '@angular/material';
 
 
@@ -39,7 +40,8 @@ import { MatDialogModule, MatInputModule, MatPaginatorModule, MatSelectModule, M
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatSortModule
   ],
   entryComponents: [VideoDialogComponent],
   providers: [],

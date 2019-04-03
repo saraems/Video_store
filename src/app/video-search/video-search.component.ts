@@ -3,6 +3,7 @@ import {DataService} from '../data.service';
 import { demoList } from '../demo-videos-list';
 import {youtubeResponse} from "../youtube-response";
 import { Video } from '../video'
+import {toNumbers} from "@angular/compiler-cli/src/diagnostics/typescript_version";
 
 
 @Component({
@@ -28,7 +29,7 @@ export class VideoSearchComponent implements OnInit {
   favouriteDemo: boolean;
   favouriteUser: boolean;
 
-  demoList: object[] = demoList;
+  demoList = demoList;
   favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
 
   userLibrary;
@@ -43,7 +44,7 @@ export class VideoSearchComponent implements OnInit {
     this.favouriteUser = false;
     this.demoList = localStorage.demoList ?  JSON.parse(localStorage.getItem('demoList')) : demoList;
     this.userLibrary = localStorage.userLibrary ? JSON.parse(localStorage.getItem('userLibrary')) : [];
-    this.favouriteDemoList = localStorage.favouriteDemoList ? JSON.parse(localStorage.getItem('favouriteDemoList')) : [];
+    this.favouriteDemoList = localStorage.favouriteDemoList ? this.demoList.filter(item => item.favourite) : [];
     this.favouriteUserList = localStorage.favouriteUserList ? JSON.parse(localStorage.getItem('favouriteUserList')) : [];
     console.log(this.favouriteDemoList, this.demoList);
   }
@@ -93,7 +94,7 @@ export class VideoSearchComponent implements OnInit {
     this.demo = !this.demo;
   }
   showUser():void {
-    this.userLibrary = JSON.parse(localStorage.getItem('userLibrary'));
+    // this.userLibrary = JSON.parse(localStorage.getItem('userLibrary'));
     this.demo = false;
     this.favouriteUser = false;
     this.favouriteDemo = false;
@@ -118,4 +119,12 @@ export class VideoSearchComponent implements OnInit {
       this.favouriteDemo = false;
     }
   };
+
+  changed(index) {
+    index = parseInt(index);
+    console.log(`Child changed!`, index);
+    this.demoList[index].favourite = false;
+    localStorage.setItem('demoList', JSON.stringify(this.demoList));
+
+  }
 }

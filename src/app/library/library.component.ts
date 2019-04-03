@@ -1,8 +1,7 @@
-import {Component, Input, OnChanges, OnInit, SimpleChange} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { VideoDialogComponent } from "../video-dialog/video-dialog.component";
-import {SimpleChanges} from "@angular/core/src/metadata/lifecycle_hooks";
-import {log} from "util";
+
 
 
 @Component({
@@ -10,12 +9,14 @@ import {log} from "util";
   templateUrl: './library.component.html',
   styleUrls: ['./library.component.scss']
 })
-export class LibraryComponent implements OnInit{
+export class LibraryComponent implements OnInit {
   @Input() videoList;
   @Input() favouriteVideoList;
   @Input() videoListName: string;
   @Input() favouriteListName: string;
   @Input() icons: boolean;
+  @Output() onProp = new EventEmitter<string>();
+
 
   length: number;
   pageSize = 10;
@@ -44,9 +45,10 @@ export class LibraryComponent implements OnInit{
   favourite(video, e) {
 
     let index = this.favouriteVideoList.indexOf(video);
+    let includedInFavourite = this.favouriteVideoList.includes(video);
 
-    console.log(this.favouriteVideoList, video, index);
-    // console.log(JSON.parse(localStorage.getItem('favouriteDemoList')));
+    console.log(this.favouriteVideoList, video, index, includedInFavourite);
+    console.log(JSON.parse(localStorage.getItem('favouriteDemoList')));
     // video.favourite = !video.favourite;
     // this.favouriteVideoList = this.videoList.filter((item) => item.favourite === true);
 
@@ -60,34 +62,19 @@ export class LibraryComponent implements OnInit{
       this.favouriteVideoList.splice(index, 1);
 
         if(this.videoListName.includes('favourite')) {
+            this.onInput(index);
             e.target.parentElement.parentElement.parentElement.remove();
         }
     }
     index = this.favouriteVideoList.indexOf(video);
+    includedInFavourite = this.favouriteVideoList.includes(video);
 
-    // const index = this.favouriteVideoList.indexOf(video);
-    // // console.log(video, this.favouriteVideoList, index);
-    // video.favourite = !video.favourite;
-    //
-    // if (index === -1) {
-    //   this.favouriteVideoList.push(video);
-    // } else if (index != -1) {
-    //   this.favouriteVideoList.splice(index, 1);
-    //   this.videoList[index].favourite === false;
-    //   // e.target.parentElement.parentElement.parentElement.remove();
-    // }
-    // console.log(video, this.favouriteVideoList, index);
-    //
-    // // this.favouriteVideoList = this.favouriteVideoList.filter((item) => item.favourite === true);
-    // // console.log(video, this.favouriteVideoList, index);
-    //
+
     localStorage.setItem(this.favouriteListName, JSON.stringify(this.favouriteVideoList));
     localStorage.setItem(this.videoListName, JSON.stringify(this.videoList));
+    // console.log(video, this.favouriteVideoList, index);
     // console.log(JSON.parse(localStorage.getItem('favouriteDemoList')));
-    console.log(this.favouriteVideoList, video, index);
-
-
-
+    console.log(this.favouriteVideoList, video, index, includedInFavourite);
   }
 
   remove(video, e) {
@@ -96,6 +83,10 @@ export class LibraryComponent implements OnInit{
     this.activePage.splice(index, 1);
     e.target.parentElement.parentElement.parentElement.remove();
     localStorage.setItem(this.videoListName, JSON.stringify(this.videoList));
+  }
+
+  onInput(value) {
+    this.onProp.emit(value);
   }
 
   onPageChanged(e) {

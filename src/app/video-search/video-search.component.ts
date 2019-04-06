@@ -45,6 +45,7 @@ export class VideoSearchComponent implements OnInit {
     this.userLibrary = localStorage.userLibrary ? JSON.parse(localStorage.getItem('userLibrary')) : [];
     this.favouriteDemoList = localStorage.favouriteDemoList ? this.demoList.filter(item => item.favourite) : [];
     this.favouriteUserList = localStorage.favouriteUserList ? this.userLibrary.filter(item => item.favourite) : [];
+    console.log(this.userLibrary);
   }
 
   createVideoId() {
@@ -80,7 +81,7 @@ export class VideoSearchComponent implements OnInit {
 
   addToMyLibrary(video): void {
     // console.log(this.video);
-    // video.videoId = this.createVideoId();
+    video.videoId = this.createVideoId();
     this.userLibrary.push(video);
     console.log(this.userLibrary);
     localStorage.setItem('userLibrary', JSON.stringify(this.userLibrary));

@@ -59,9 +59,9 @@ export class DataService {
 
   static createVimeoUrlRequest(videoKey: string) {
     const vimeoUrl = 'https://api.vimeo.com/videos/';
-    const clientId = '?client_id=2cb0bcb4d08d9980d290a6b9605f1d1f4bea4f26';
-    const clientSecret = '&client_secret=N3fT0QmVFiQ/6ZflQwenV8XhxgrInumk470jSDzo6C7kw/PthXMEqB2hyrgpCqzLiTxOiAOs9fas5dnY1tlf44hQ+2JK4ne1sX7SHAQXRyPZERb++yH8YaTMG4JHEX5B';
-    const accesToken = '&access_token=0e99aea30a3885bdb682ad4b02cf242c';
+    const clientId = '?client_id=0ada7efcaf2f498d9d8158437ea3b96454a7d532';
+    const clientSecret = '&client_secret=cRTl6jSY19wLuqQUGtPFzzlWIWOofB5Er9RkGzdQrBKjoXzSlRPM6RegNSWLhIyrh0+fap99OfnfVsislsxuYf1TR8mr4vUB0pQBcx/DQfOkyOqDNrAoENf/MjpA49Fb';
+    const accesToken = '&access_token=f3d18718197f3d5d893eb3f38282a4bc';
     return (vimeoUrl + videoKey + clientId + clientSecret + accesToken)
   }
 

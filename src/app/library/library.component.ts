@@ -117,7 +117,7 @@ export class LibraryComponent implements OnInit {
         case 'title': return compare(a.title, b.title, isAsc);
         case 'likes': return compare(a.likes, b.likes, isAsc);
         case 'views': return compare(a.views, b.views, isAsc);
-        case 'addingDate': return compare(a.addingDate, b.addingDate, isAsc);
+        case 'addingDate': return compare(b.date, a.date, isAsc);
         default: return 0;
       }
     });

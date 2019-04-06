@@ -9,6 +9,7 @@ export class Video {
   videoUrl: string;
   favourite: boolean;
   addingDate: string;
+  date: any;
 
  constructor(innerId: number, externalId: string, title: string, views: number | string, likes: number | string, imgUrl: string, videoUrl: string, favourite: boolean) {
    this.videoId = innerId;
@@ -19,7 +20,8 @@ export class Video {
    this.imgUrl =  imgUrl;
    this.videoUrl = videoUrl;
    this.favourite = favourite;
-   this.addingDate = Video.getTodayDate()
+   this.addingDate = Video.getTodayDate();
+   this.date = new Date();
  }
 
   static getTodayDate() {
